@@ -6,6 +6,7 @@ class Weapon {
     private WeaponType type;
     private int uses;
     private static final float DEFAULT_POWER=1.0f;
+    private static final float MIN_USES=0;
     
     Weapon(String name, WeaponType type, int uses){
         this.name=name;
@@ -31,7 +32,7 @@ class Weapon {
     
     public float useIt(){
         float result;
-        if(uses>0){
+        if(uses>MIN_USES){
             uses--;
             result=power();
         }else result=DEFAULT_POWER;
