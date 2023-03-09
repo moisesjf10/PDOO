@@ -32,7 +32,7 @@ module Deepspace
         
         def initWithNHangars
 			result = 0
-			if @generator.rand() >= @NHANGARSPROB
+			if @generator.rand() >= @NHANGARSPROB then
 				result = 1
 			end 
 			return result
@@ -42,11 +42,11 @@ module Deepspace
         def initWithNWeapons
 			valor = 1;
 			prob = @generator.rand()
-			if  prob <= @NWEAPONSPROB
+			if  prob <= @NWEAPONSPROB then
 				valor = 1;
-			elsif prob <= 2*@NWEAPONSPROB 
+			elsif prob <= 2*@NWEAPONSPROB then
 				valor = 2;
-			elsif prob <= 1
+			elsif prob <= 1 then
 				valor = 3;
 			end
             
@@ -56,7 +56,7 @@ module Deepspace
         
         def initWithNShields
 			result = 0
-			if @generator.rand() >= @NSHIELDSPROB
+			if @generator.rand() >= @NSHIELDSPROB then
 				result = 1
 			end 
 			return result

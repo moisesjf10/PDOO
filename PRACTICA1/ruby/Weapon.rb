@@ -5,8 +5,8 @@ require_relative "WeaponType"
 
 module Deepspace
 	class Weapon
-		@@DEFAULT_POWER = 1.0
-		@@MIN_USES = 0
+		@DEFAULT_POWER = 1.0
+		@MIN_USES = 0
 		
 		def initialize(name, type, uses)
 			@name = name
@@ -15,7 +15,7 @@ module Deepspace
 		end
 		
 		def self.newCopy(weapon)
-			self.new(weapon.name, weapon.type, weapon.uses)
+			new(weapon.name, weapon.type, weapon.uses)
 		end
 		
 		def type
@@ -32,7 +32,7 @@ module Deepspace
 		
 		def useIt
 			aux=0
-			if uses > @@MIN_USES 
+			if uses > @@MIN_USES then
 				@uses-=1
 				aux=power
 			else

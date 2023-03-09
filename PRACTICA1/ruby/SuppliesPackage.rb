@@ -9,7 +9,7 @@ module Deepspace
 		end
 		
 		def self.newCopy(package)
-			self.new(package.ammoPower, package.fuelUnits, package,shieldPower)
+			new(package.ammoPower, package.fuelUnits, package,shieldPower)
 		end
 		
 		def ammoPower

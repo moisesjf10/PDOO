@@ -22,8 +22,8 @@
 
 module 
 	class ShieldBooster
-		@@DEFAULT_BOOST = 1.0
-		@@MIN_USES = 0
+		@DEFAULT_BOOST = 1.0
+		@MIN_USES = 0
 		
 		def initialize (name,boost,uses)
 			@name = name
@@ -31,8 +31,8 @@ module
 			@uses = uses
 		end 
 		
-		def newCopy(o)
-			self.new(o.name,o.boost,o.uses)
+		def self.newCopy(o)
+			new(o.name,o.boost,o.uses)
 		end
 		
 		def name
@@ -49,7 +49,7 @@ module
 		
 		def useIt
 			aux = 0
-			if @uses > @@MIN_USES
+			if @uses > @@MIN_USES then
 				@uses -= 1
 				aux = boost
 			else 
