@@ -1,24 +1,3 @@
-#  Dive.rb
-#  
-#  Copyright 2023 Manuel <manuel@manuel-ROG-Strix-G513IC-G513IC>
-#  
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2 of the License, or
-#  (at your option) any later version.
-#  
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#  
-#  You should have received a copy of the GNU General Public License
-#  along with this program; if not, write to the Free Software
-#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-#  MA 02110-1301, USA.
-#  
-#  
-
 module Deepspace
 
 	class Dice
@@ -50,7 +29,7 @@ module Deepspace
 				valor = 3;
 			end
             
-        return valor;
+			return valor;
         
         end
         
@@ -64,15 +43,28 @@ module Deepspace
         end
         
         def whoStarts(nPlayers)
-        
+			@generator.rand(nPlayers)
         end 
         
         def firstShot 
-        
+			shot=0
+			if @generator.rand() <= @FIRSTSHOTPROB then
+				shot=GameCharacter::SPACESTATION
+			else 
+				shot=GameCharacter::ENEMYSTARSHIP
+			end	
+			
+			return shot
         end
         
-        def spaceStationMoves( speed)
-        
+        def spaceStationMoves(speed)
+			bool=false
+			
+			if @generator.rand() <= speed then
+				bool=false
+			end
+			
+			return bool
         end
         
         

@@ -1,8 +1,9 @@
+
 package practica1;
 
 /**
  *
- * @author moises
+ * @author manuel
  */
 public class Practica1 {
 

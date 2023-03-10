@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package practica1;
 import java.util.Random;
 /**
@@ -50,15 +46,16 @@ class Dice {
     }
     
     int whoStarts(int nPlayers){
-       return generator.nextInt(nPlayers - 1 ); //revisar.
+       return generator.nextInt(nPlayers); //revisar.
     }
     
-    GameCharacter firstShot{
-        
+    GameCharacter firstShot(){
+        GameCharacter shot=((generator.nextFloat() <= FIRSTSHOTPROB )? GameCharacter.SPACESTATION : GameCharacter.ENEMYSTARSHIP);
+        return shot;
     }
     
     boolean spaceStationMoves(float speed){
-        
+        return ((generator.nextFloat() <= speed )? true:false);
     }
     
     
