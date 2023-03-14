@@ -28,7 +28,7 @@ module Deepspace
 				@power = power 
 			end 
 			
-			def getPower 
+			def power 
 				@power
 			end 
 			

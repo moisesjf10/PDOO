@@ -20,7 +20,7 @@
 #  
 
 
-module 
+module Deepspace
 	class ShieldBooster
 		@DEFAULT_BOOST = 1.0
 		@MIN_USES = 0
@@ -36,31 +36,34 @@ module
 		end
 		
 		def name
-			name
+			@name
 		end 
 		
 		def boost
-			boost
+			@boost
 		end 
 		
 		def uses
-			uses
+			@uses
 		end 
+		
+		def self.min_uses
+			@MIN_USES
+		end
+			
+		def self.default_boost
+			@DEFAULT_BOOST
+		end
 		
 		def useIt
 			aux = 0
-			if @uses > @@MIN_USES then
+			if @uses > self.class.min_uses then
 				@uses -= 1
 				aux = boost
 			else 
-				aux = @@DEFAULT_BOOST
+				aux = self.class.default_boost
 			end 
-			
 			return aux
-			
-		end 
-		
-		
-		
-	end 
-end 
+		end 		
+	end
+end

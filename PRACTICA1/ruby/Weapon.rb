@@ -18,6 +18,10 @@ module Deepspace
 			new(weapon.name, weapon.type, weapon.uses)
 		end
 		
+		def name
+			@name
+		end
+		
 		def type
 			@type
 		end
@@ -30,13 +34,21 @@ module Deepspace
 			type.power
 		end
 		
+		def self.min_uses
+			@MIN_USES
+		end
+			
+		def self.default_power
+			@DEFAULT_POWER
+		end
+		
 		def useIt
 			aux=0
-			if uses > @@MIN_USES then
+			if uses > self.class.min_uses then
 				@uses-=1
 				aux=power
 			else
-				aux=@@DEFAULT_POWER
+				aux= self.class.default_power
 			end
 			
 			return aux

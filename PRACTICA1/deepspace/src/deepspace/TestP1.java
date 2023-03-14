@@ -1,19 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package deepspace;
 
-/**
- *
- * @author moises
- */
-
 public class TestP1 {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
         System.out.println("\t Elementos del tipo numerado WeaponType:");
@@ -82,12 +69,14 @@ public class TestP1 {
         System.out.println("\t Elementos de la clase Weapon:");
         System.out.println(weapon.getType());
         System.out.println(weapon.getUses());
+        System.out.println(weapon.power());
         System.out.println(weapon.useIt());
         
         Weapon w = new Weapon(weapon);
         
         System.out.println(w.getType());
         System.out.println(w.getUses());
+        System.out.println(w.power());
         System.out.println(w.useIt());
         System.out.println("\n");
         

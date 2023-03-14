@@ -61,7 +61,7 @@ module Deepspace
 			bool=false
 			
 			if @generator.rand() <= speed then
-				bool=false
+				bool=true
 			end
 			
 			return bool
