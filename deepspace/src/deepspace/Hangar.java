@@ -68,16 +68,30 @@ class Hangar {
     }
     
     public int getMaxElements(){
-        throw new UnsupportedOperationException();
+        return maxElements;
     }
     
     
     public ShieldBooster[] getShieldBoosters(){
-        throw new UnsupportedOperationException();
+        int size=shieldBoosters.size();
+        ShieldBooster [] s = new ShieldBooster[size];
+        
+        for(int i=0; i<size; i++){
+            s[i]=shieldBoosters.get(i);
+        }
+        
+        return s; 
     }
     
     public Weapon[] getWeapons(){
-        throw new UnsupportedOperationException();
+        int size=weapons.size();
+        Weapon [] w = new Weapon[size];
+        
+        for(int i=0; i<size; i++){
+            w[i]=weapons.get(i);
+        }
+        
+        return w; 
     }
     
     

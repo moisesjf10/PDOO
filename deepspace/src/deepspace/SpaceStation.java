@@ -1,5 +1,6 @@
 package deepspace;
-        
+import java.util.ArrayList;
+
 class SpaceStation {
     private static final int MAXFUEL = 100;
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f;
@@ -7,6 +8,10 @@ class SpaceStation {
     private String name; 
     private int nMedals;
     private float shieldPower;
+    private Damage pendingDamage;
+    private ArrayList<Weapon> weapons;
+    private ArrayList<ShieldBooster> shieldBoosters;
+    private Hangar hangar;
     
     private void assingFuelValue(float f){
         
@@ -113,6 +118,10 @@ class SpaceStation {
     }
     public boolean validState(){
     
+    }
+    
+    public String toString (){
+        
     }
     
     

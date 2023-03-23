@@ -1,9 +1,16 @@
 package deepspace;
+import java.util.ArrayList;
 
 class GameUniverse{
     private static final int WIN=10;
     private int currentStationIndex;
     private int turns;
+    private Dice dice;
+    private GameStateController gameState;
+    private EnemyStarShip currentEnemy;
+    private SpaceStation cuurentStation;
+    private ArrayList<SpaceStation> spaceStations;
+    
     
     public GameUniverse(){
         
@@ -49,7 +56,7 @@ class GameUniverse{
         
     }
     
-    public void init(string[] names){
+    public void init(String[] names){
         
         
     }
@@ -67,7 +74,9 @@ class GameUniverse{
         
     }
     
-    
+    public String toString (){
+        
+    }
     
     
 }

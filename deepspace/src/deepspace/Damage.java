@@ -1,9 +1,11 @@
 package deepspace;
-
+import java.util.ArrayList;
 
 class Damage {
    private int nShields; 
    private int nWeapons;
+   private ArrayList<WeaponType> weapons;
+   
    
    Damage(int w, int s){
        
@@ -50,6 +52,10 @@ class Damage {
    }
    
    public WeaponType[] getWeapons(){
+       
+   }
+   
+   public String toString (){
        
    }
 }
