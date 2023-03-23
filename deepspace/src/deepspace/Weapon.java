@@ -40,6 +40,13 @@ class Weapon {
         return result;
     }
     
+    @Override
+    public String toString (){
+        String salida = "[Weapon] -> name: " + name + ", type:" + type +
+                        ", uses: " + uses ; 
+        
+        return salida;
+    }
     
 }
 

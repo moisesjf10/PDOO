@@ -38,5 +38,16 @@ class ShieldBooster {
         
         return aux;
     }
+    
+    @Override
+    public String toString(){
+        String salida="[ShieldBooster] -> Boost: " + boost
+                + ", Uses: " + uses;
+        return salida; 
+    }
+    
+    ShieldToUI getUIVersion(){
+        return new ShieldToUI(this);
+    }
 }
 

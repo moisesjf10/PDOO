@@ -29,5 +29,13 @@ class SuppliesPackage {
     public float getShieldPower(){
         return shieldPower;
     }
+    
+    @Override
+    public String toString(){
+        String salida="[SuppliesPackage] -> ammoPower: "+ ammoPower + 
+                ", fuelUnits: "+ fuelUnits +
+                ", shieldPower: "+ shieldPower;
+        return salida;
+    }
 }
 

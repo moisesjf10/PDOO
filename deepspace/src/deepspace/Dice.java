@@ -51,7 +51,7 @@ class Dice {
     }
     
     boolean spaceStationMoves(float speed){
-        return ((generator.nextFloat() <= speed )? true:false);
+        return (generator.nextFloat() <= speed );
     }
     
     

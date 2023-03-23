@@ -36,6 +36,18 @@ public class Loot {
         return nMedals;
     } 
     
+    @Override
+    public String toString(){
+        String salida="[Loot] -> nSupplies: "+ nSupplies + 
+                ", nWeapons: "+ nWeapons +
+                ", nShields: "+ nShields +
+                ", nHangars: "+ nHangars +
+                ", nMedals; "+ nMedals;
+        return salida;
+    }
     
+    LootToUI getUIVersion(){
+        return new LootToUI(this);
+    }
 }
 
