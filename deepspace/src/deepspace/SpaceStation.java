@@ -30,8 +30,8 @@ class SpaceStation {
         fuelUnits = supplies.getFuelUnits();
         shieldPower = supplies.getShieldPower();
         nMedals =0;
-        weapons = new ArrayList<Weapon>;
-        shieldBoosters = new ArrayList<ShieldBooster>;
+        weapons = new ArrayList<Weapon>();
+        shieldBoosters = new ArrayList<ShieldBooster>();
         hangar= null;
     }
     
@@ -44,13 +44,13 @@ class SpaceStation {
     }
           
     public void discardShieldBooster(int i){
-
+        throw new UnsupportedOperationException();
     }
     public void discardShieldBoosterInHangar(int i){
     
     }
     public void discardWeapon(int i){
-    
+        throw new UnsupportedOperationException();
     }
     public void discardWeaponInHangar(int i){
         if (hangar != null){
@@ -58,7 +58,7 @@ class SpaceStation {
         }
     }
     public float fire(){
-    
+        throw new UnsupportedOperationException();
     }
     public float getAmmoPower(){
         return ammoPower;
@@ -118,14 +118,17 @@ class SpaceStation {
             fuelUnits = fuelUnits - getSpeed();
         }
     }
-    public float protection(){
     
+    public float protection(){
+        throw new UnsupportedOperationException();
     }
+    
     public void receiveHangar(Hangar h){
         if (hangar != null)
             hangar = h;
 
     }
+    
     public boolean receiveShieldBooster(ShieldBooster s){
         boolean resultado = false;
         if (hangar != null){
@@ -134,8 +137,9 @@ class SpaceStation {
         }
         return resultado;
     }
-    public ShotResult receiveShot(float shot){
     
+    public ShotResult receiveShot(float shot){
+        throw new UnsupportedOperationException();
     }
     public void receiveSupplies(SuppliesPackage s){
     
@@ -144,7 +148,7 @@ class SpaceStation {
     
     }
     public void setLoot(Loot loot){
-    
+        throw new UnsupportedOperationException();
     }
     public void setPendingDamage(Damage d){
     

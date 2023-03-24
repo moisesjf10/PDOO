@@ -18,7 +18,7 @@ class EnemyStarShip {
     }
     
     EnemyStarShip(EnemyStarShip e){
-        this.(e.name,e.ammoPower,e.shieldPower,e.loot,e.damage);
+        this(e.name,e.ammoPower,e.shieldPower,e.loot,e.damage);
     }
     
     EnemyToUI getUIVersion(){
@@ -53,7 +53,8 @@ class EnemyStarShip {
         ShotResult resultado = ShotResult.RESIST;
         if (protection() < shot)
             resultado = ShotResult.DONOTRESIST;
-
+        
+        return resultado;
     }
     
     public String toString (){

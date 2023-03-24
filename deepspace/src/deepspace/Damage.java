@@ -11,7 +11,7 @@ class Damage {
    Damage(int w, int s){
        nWeapons=w;
        nShields=s;
-       weapons=new ArrayList<WeaponType>();
+       weapons=null;
    }
    
    Damage(ArrayList<WeaponType> wl, int s){
@@ -32,9 +32,9 @@ class Damage {
    private int arrayContainsType(ArrayList<Weapon> w, WeaponType t){
        Iterator<Weapon> it=w.iterator();
        boolean encontrado=false;
-       int pos;
+       int pos=-1;
        int i=0;
-       while(it.hasNext()){
+       while(it.hasNext() && !encontrado){
            if(it.next().getType() == t){
                pos=i;
                encontrado=true;
@@ -42,13 +42,34 @@ class Damage {
            i++;
            it.next();
        }
-       if(!encontrado) pos=-1;
 
        return pos;
    }
    
    public Damage adjust(ArrayList<Weapon> w, ArrayList<ShieldBooster> s){
+       int nshields=Integer.min(nShields, s.size());
+       Damage d;
+       if(weapons == null){
+           int nweapon=Integer.min(nWeapons, w.size());
+           d=new Damage(nweapon,nshields);
+       }else{
+           ArrayList<Weapon> aux = new ArrayList<Weapon>(w);
+           ArrayList<WeaponType> waux = new ArrayList<WeaponType>();
+           
+           for(WeaponType i: weapons){
+                int index = arrayContainsType(aux, i);
+          
+                if(index != -1){
+                    waux.add(i); 
+                    aux.remove(index);
+                }
+           }
+           
+           d=new Damage(waux,nshields);
+           
+       }
        
+       return d;
    }
    
    public void discardWeapon(Weapon w){
@@ -68,8 +89,8 @@ class Damage {
    public boolean hasNoEffect(){
        boolean effect;
 
-       if(nWeapons==-1) effect=(weapons.size() + nShields == 0);
-       else effect= (nWeapons + nShields == 0);
+       if(nWeapons==-1) effect = (weapons.size() + nShields == 0);
+       else effect = (nWeapons + nShields == 0);
 
        return effect;
    }
@@ -85,10 +106,6 @@ class Damage {
    public ArrayList<WeaponType> getWeapons(){
        return weapons;
     }
-   
-   public ArrayList<WeaponType> getWeapons(){
-       return weapons;
-   }
    
    public String toString (){
         String salida;
