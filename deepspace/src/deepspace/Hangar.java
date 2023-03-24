@@ -9,8 +9,8 @@ class Hangar {
     
     Hangar(int capacity){
         maxElements=capacity;
-        shieldBoosters=new ArrayList<>();
-        weapons=new ArrayList<>();
+        shieldBoosters=new ArrayList<ShieldBooster>();
+        weapons=new ArrayList<Weapon>();
     }
     
     Hangar(Hangar h){
@@ -72,26 +72,12 @@ class Hangar {
     }
     
     
-    public ShieldBooster[] getShieldBoosters(){
-        int size=shieldBoosters.size();
-        ShieldBooster [] s = new ShieldBooster[size];
-        
-        for(int i=0; i<size; i++){
-            s[i]=shieldBoosters.get(i);
-        }
-        
-        return s; 
+    public ArrayList<ShieldBooster> getShieldBoosters(){
+        return shieldBoosters;
     }
     
-    public Weapon[] getWeapons(){
-        int size=weapons.size();
-        Weapon [] w = new Weapon[size];
-        
-        for(int i=0; i<size; i++){
-            w[i]=weapons.get(i);
-        }
-        
-        return w; 
+    public ArrayList<Weapon> getWeapons(){
+        return weapons;
     }
     
     
