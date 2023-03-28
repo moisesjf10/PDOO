@@ -21,8 +21,8 @@ class EnemyStarShip {
         this(e.name,e.ammoPower,e.shieldPower,e.loot,e.damage);
     }
     
-    EnemyToUI getUIVersion(){
-        return new EnemyToUI(this);
+    EnemyToUI getUIversion(){
+        return (new EnemyToUI(this));
     }
     
     public float fire(){
@@ -43,6 +43,10 @@ class EnemyStarShip {
     
     public float getShieldPower(){
         return shieldPower;
+    }
+    
+    public Damage getDamage(){
+        return damage;
     }
     
     public float protection(){

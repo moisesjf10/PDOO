@@ -30,5 +30,11 @@ module Deepspace
 		def nMedals
 			@nMedals
 		end
+
+		def to_s
+			salida="[Loot] -> nSupplies: "+ nSupplies.to_s + ", nWeapons: "+ nWeapons.to_s + ", nShields: "+ nShields.to_s + ", nHangars: "+ nHangars.to_s + ", nMedals; "+ nMedals.to_s
+
+			return salida
+		end
 	end
 end

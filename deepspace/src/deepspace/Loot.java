@@ -46,8 +46,8 @@ public class Loot {
         return salida;
     }
     
-    LootToUI getUIVersion(){
-        return new LootToUI(this);
+    LootToUI getUIversion(){
+        return (new LootToUI(this));
     }
 }
 

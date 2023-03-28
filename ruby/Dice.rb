@@ -1,24 +1,24 @@
 module Deepspace
 
 	class Dice
-        def initialize 
+		def initialize
 			@NHANGARSPROB=0.25
 			@NSHIELDSPROB=0.25
 			@NWEAPONSPROB=0.33
 			@FIRSTSHOTPROB=0.5
 			@generator = Random.new()
-        end 
+		end
         
-        def initWithNHangars
+		def initWithNHangars
 			result = 0
 			if @generator.rand() >= @NHANGARSPROB then
 				result = 1
 			end 
 			return result
         
-        end
+		end
         
-        def initWithNWeapons
+		def initWithNWeapons
 			valor = 1;
 			prob = @generator.rand()
 			if  prob <= @NWEAPONSPROB then
@@ -31,22 +31,22 @@ module Deepspace
             
 			return valor;
         
-        end
+		end
         
-        def initWithNShields
+		def initWithNShields
 			result = 0
 			if @generator.rand() >= @NSHIELDSPROB then
 				result = 1
 			end 
 			return result
         
-        end
+		end
         
-        def whoStarts(nPlayers)
+		def whoStarts(nPlayers)
 			@generator.rand(nPlayers)
-        end 
+		end
         
-        def firstShot 
+		def firstShot
 			shot=0
 			if @generator.rand() <= @FIRSTSHOTPROB then
 				shot=GameCharacter::SPACESTATION
@@ -55,9 +55,9 @@ module Deepspace
 			end	
 			
 			return shot
-        end
+		end
         
-        def spaceStationMoves(speed)
+		def spaceStationMoves(speed)
 			bool=false
 			
 			if @generator.rand() <= speed then
@@ -65,9 +65,8 @@ module Deepspace
 			end
 			
 			return bool
-        end
-        
-        
+		end
+
 	end
 end 
 

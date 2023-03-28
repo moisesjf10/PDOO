@@ -64,6 +64,12 @@ module Deepspace
 				aux = self.class.default_boost
 			end 
 			return aux
-		end 		
+		end
+
+		def to_s
+			salida="[ShieldBooster] -> Boost: " + boost.to_s + ", Uses: " + uses.to_s
+
+			return salida
+		end
 	end
 end

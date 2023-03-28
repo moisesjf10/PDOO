@@ -23,7 +23,11 @@ module Deepspace
 		def shieldPower
 			@shieldPower
 		end
-	
+
+		def to_s
+			salida="[SuppliesPackage] -> ammoPower: "+ ammoPower.to_s + ", fuelUnits: "+ fuelUnits.to_s + ", shieldPower: "+ shieldPower.to_s
+			return salida
+		end
 	end
 end
 	

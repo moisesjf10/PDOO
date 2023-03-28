@@ -6,26 +6,27 @@ class Damage {
    private int nWeapons;
    private int nShields;
    private ArrayList<WeaponType> weapons;
+   private static final int NO_USE=-1;
    
-   
-   Damage(int w, int s){
+   private Damage(int w, int s, ArrayList<WeaponType> wl){
        nWeapons=w;
        nShields=s;
-       weapons=null;
+       weapons=wl;
+   }
+   
+   Damage(int w, int s){
+       this(w,s,null);
    }
    
    Damage(ArrayList<WeaponType> wl, int s){
-       weapons = wl;
-       nShields=s;
-       nWeapons=-1;
+       this(NO_USE,s,wl);
    }
    
    Damage(Damage d){
-      this(d.nWeapons, d.nShields);
-      weapons=d.weapons;
+      this(d.nWeapons, d.nShields,d.weapons);
    }
    
-   DamageToUI getUIVersion(){
+   DamageToUI getUIversion(){
        return (new DamageToUI(this));
    }
    
@@ -73,7 +74,7 @@ class Damage {
    }
    
    public void discardWeapon(Weapon w){
-       if(nWeapons==-1){
+       if(nWeapons==NO_USE){
             if(!weapons.isEmpty()){
                 weapons.remove(w.getType());
             }
@@ -89,7 +90,7 @@ class Damage {
    public boolean hasNoEffect(){
        boolean effect;
 
-       if(nWeapons==-1) effect = (weapons.size() + nShields == 0);
+       if(nWeapons==NO_USE) effect = (weapons.size() + nShields == 0);
        else effect = (nWeapons + nShields == 0);
 
        return effect;
@@ -109,7 +110,7 @@ class Damage {
    
    public String toString (){
         String salida;
-        if(nWeapons==-1){
+        if(nWeapons==NO_USE){
             salida = "[Damage] -> weapons: " + getWeapons().toString() +
                     ", nShields: " + nShields;
         }else {

@@ -53,5 +53,10 @@ module Deepspace
 			
 			return aux
 		end
+
+		def to_s
+			salida="[Weapon] -> name: " + name.to_s + ", type:" + type.to_s + ", uses: " + uses.to_s
+			return salida
+		end
 	end
 end

@@ -92,7 +92,7 @@ class GameUniverse{
         throw new UnsupportedOperationException();
     }
     
-    public String toString (){
+    public String toString(){
         String salida="[GameUniverse] -> WIN: "+ WIN +
                 ", currentStationIndex: "+ currentStationIndex +
                 ", gameState: "+ gameState.toString() +

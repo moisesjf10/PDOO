@@ -46,8 +46,8 @@ class ShieldBooster {
         return salida; 
     }
     
-    ShieldToUI getUIVersion(){
-        return new ShieldToUI(this);
+    ShieldToUI getUIversion(){
+        return (new ShieldToUI(this));
     }
 }
 

@@ -40,6 +40,11 @@ class Weapon {
         return result;
     }
     
+    WeaponToUI getUIversion(){
+        return (new WeaponToUI(this));
+    }
+            
+    
     @Override
     public String toString (){
         String salida = "[Weapon] -> name: " + name + ", type:" + type +
