@@ -186,6 +186,19 @@ module Deepspace
       return resultado
     end
 
+    def to_s
+      salida="[SpaceStation] -> ammoPower: "+ ammoPower.to_s +
+        ", fuelUnits: "+ fuelUnits.to_s +
+        ", name: "+ name.to_s +
+        ", nMedals: "+ nMedals.to_s +
+        ", shieldPower: "+ shieldPower.to_s +
+        ", pendingDamage: "+ pendingDamage.to_s +
+        ", weapons: "+ weapons.to_s +
+        ", shieldBoosters: "+ shieldBoosters.to_s +
+        ", hangar: "+ hangar.to_s
+      return salida;
+    end
+
     private
     def assignFuelValue(f)
       if(f < @@MAXFUEL)
