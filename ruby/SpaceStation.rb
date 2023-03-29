@@ -33,7 +33,9 @@ module Deepspace
     end
 
     def discardShieldBoosterInHangar(i)
-
+      if(@hangar != nil)
+        @hangar.removeShieldBooster(i)
+      end
     end
 
     def discardWeapon(i)
@@ -41,7 +43,9 @@ module Deepspace
     end
 
     def discardWeaponInHangar(i)
-
+      if(@hangar != nil)
+        @hangar.removeWeapon(i)
+      end
     end
 
     def fire
@@ -84,8 +88,15 @@ module Deepspace
       @shieldPower
     end
 
-    def speed
-      return fuelUnits/@@MAXFUEL
+    def getSpeed
+      speed=0
+      if(@@MAXFUEL!=0)
+        speed=@fuelUnits.to_f/@@MAXFUEL
+      else
+        raise "Division entre 0, MAXFUEL no puede ser 0"
+      end
+
+      return speed
     end
 
     def getUIversion
@@ -93,15 +104,27 @@ module Deepspace
     end
 
     def mountShieldBooster(i)
-
+      if(@hangar != nil)
+        s=@hangar.removeShieldBoosters(i)
+        if(s != nil)
+          @shieldBoosters.add(s)
+        end
+      end
     end
 
     def mountWeapon(i)
-
+      if(@hangar != nil)
+        w=@hangar.removeWeapon(i)
+        if(w != nil)
+          @weapons.add(w)
+        end
+      end
     end
 
     def move
-
+      if ((@fuelUnits - getSpeed) > 0)
+        @fuelUnits -= getSpeed
+      end
     end
 
     def protection
@@ -147,11 +170,20 @@ module Deepspace
     end
 
     def setPendingDamage(d)
-      
+      if (d != nil)
+        @pendingDamage=d.adjust(@weapons, @shieldBoosters)
+      end
     end
 
     def validState
+      resultado=false
+      if(@pendingDamage==nil)
+        resultado=true
+      elsif(@pendingDamage.hasNoEffect)
+        resultado=true
+      end
 
+      return resultado
     end
 
     private
