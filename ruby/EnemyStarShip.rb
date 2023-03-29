@@ -2,12 +2,16 @@
 
 module Deepspace
   class EnemyStarShip
-    def initialize
-
+    def initialize(n, a, s, l, d)
+      @name=n
+      @ammoPower=a
+      @shieldPower=s
+      @loot=l
+      @damage=d
     end
 
     def self.newCopy(e)
-
+      new(e)
     end
 
     def getUIversion
@@ -19,23 +23,23 @@ module Deepspace
 
     end
 
-    def getAmmoPower
+    def ammoPower
 
     end
 
-    def getDamage
+    def damage
 
     end
 
-    def getLoot
+    def loot
 
     end
 
-    def getName
+    def name
 
     end
 
-    def getShieldPower
+    def shieldPower
 
     end
 

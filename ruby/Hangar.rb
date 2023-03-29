@@ -27,15 +27,15 @@ module Deepspace
 
     end
 
-    def getMaxElements
+    def maxElements
 
     end
 
-    def getShieldBooster
+    def shieldBooster
 
     end
 
-    def getWeapons
+    def weapons
 
     end
 

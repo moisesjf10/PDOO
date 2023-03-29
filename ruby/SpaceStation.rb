@@ -38,39 +38,39 @@ module Deepspace
 
     end
 
-    def getAmmoPower
+    def ammoPower
 
     end
 
-    def getFuelUnits
+    def fuelUnits
 
     end
 
-    def getHangar
+    def hangar
 
     end
 
-    def getName
+    def name
 
     end
 
-    def getNMedals
+    def nMedals
 
     end
 
-    def getPendingDamage
+    def pendingDamage
 
     end
 
-    def getShieldBoosters
+    def shieldBoosters
 
     end
 
-    def getShieldPower
+    def shieldPower
 
     end
 
-    def getSpeed
+    def speed
 
     end
 
@@ -78,7 +78,7 @@ module Deepspace
 
     end
 
-    def getWeapons
+    def weapons
 
     end
 

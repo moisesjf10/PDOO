@@ -49,11 +49,11 @@ module Deepspace
 
     end
 
-    def getNWeapons
+    def nWeapons
 
     end
 
-    def getWeapons
+    def weapons
 
     end
 

@@ -33,7 +33,7 @@ module Deepspace
 
     end
 
-    def getState
+    def state
 
     end
 
