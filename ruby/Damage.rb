@@ -7,7 +7,8 @@ module Deepspace
     end
 
     def self.newNumericWeapons(w, s)
-
+			HOLA
+			
     end
 
     #se iniciliza con una lista de WeaponType
