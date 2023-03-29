@@ -175,7 +175,7 @@ class SpaceStation {
         throw new UnsupportedOperationException();
     }
     public void setPendingDamage(Damage d){
-        d.adjust(weapons, shieldBoosters);
+        pendingDamage=d.adjust(weapons, shieldBoosters);
         
     }
     public boolean validState(){

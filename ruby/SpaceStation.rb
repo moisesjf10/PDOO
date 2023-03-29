@@ -137,7 +137,9 @@ module Deepspace
     end
 
     def receiveSupplies(s)
-
+      @ammoPower+=s.ammoPower
+      @fuelUnits+=s.fuelUnits
+      @shieldPower+=s.shieldPower
     end
 
     def setLoot(loot)
@@ -145,7 +147,7 @@ module Deepspace
     end
 
     def setPendingDamage(d)
-
+      
     end
 
     def validState
