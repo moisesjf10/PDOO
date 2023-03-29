@@ -12,8 +12,8 @@ module Deepspace
       @shieldPower=0
       receiveSupplies(supplies)
       @nMedals=0
-      @weapons=[]
-      @shieldBoosters=[]
+      @weapons=Array.new()
+      @shieldBoosters=Array.new()
       @hangar=nil
       @pendingDamage=nil
     end
@@ -107,7 +107,7 @@ module Deepspace
       if(@hangar != nil)
         s=@hangar.removeShieldBoosters(i)
         if(s != nil)
-          @shieldBoosters.add(s)
+          @shieldBoosters.push(s)
         end
       end
     end
@@ -116,7 +116,7 @@ module Deepspace
       if(@hangar != nil)
         w=@hangar.removeWeapon(i)
         if(w != nil)
-          @weapons.add(w)
+          @weapons.push(w)
         end
       end
     end
