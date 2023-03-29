@@ -141,7 +141,7 @@ class SpaceStation {
     }
     
     public void receiveHangar(Hangar h){
-        if (hangar != null)
+        if (hangar == null)
             hangar = h;
 
     }
@@ -149,8 +149,7 @@ class SpaceStation {
     public boolean receiveShieldBooster(ShieldBooster s){
         boolean resultado = false;
         if (hangar != null){
-            if (shieldBoosters.add(s) != false)
-            resultado = true ;
+           resultado = hangar.addShieldBooster(s) ;
         }
         return resultado;
     }
@@ -166,9 +165,8 @@ class SpaceStation {
     public boolean receiveWeapon(Weapon w){
         boolean resultado = false;
         if(hangar != null){
-            if(weapons.add(w) != false){
-                resultado = true;
-            }
+            resultado = hangar.addWeapon(w);
+            
         }
         return resultado;
         

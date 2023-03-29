@@ -109,11 +109,27 @@ module Deepspace
     end
 
     def receiveHangar(h)
+      if(@hangar==nil)
+        @hangar=h
+      end
+    end
 
+    def receiveWeapon(w)
+      resultado=false
+      if(@hangar != nil)
+        resultado=@hangar.addWeapon(w)
+      end
+
+      return resultado
     end
 
     def receiveShieldBooster(s)
+      resultado=false
+      if(@shieldBoosters != nil)
+        resultado=@hangar.addShieldBooster(s)
+      end
 
+      return resultado
     end
 
     def receiveShot(shot)
@@ -121,10 +137,6 @@ module Deepspace
     end
 
     def receiveSupplies(s)
-
-    end
-
-    def receiveWeapon(w)
 
     end
 
