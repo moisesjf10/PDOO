@@ -11,44 +11,49 @@ module Deepspace
     end
 
     def self.newCopy(e)
-      new(e)
+      new(e.name, e.ammoPower, e.shieldPower, e.loot, e.damage)
     end
 
     def getUIversion
-
+      return EnemyToUI.new(self)
     end
 
     public
     def fire
-
-    end
-
-    def ammoPower
-
-    end
-
-    def damage
-
-    end
-
-    def loot
-
-    end
-
-    def name
-
-    end
-
-    def shieldPower
-
+      return @ammoPower
     end
 
     def protection
+      return shieldPower
+    end
 
+    def ammoPower
+      return @ammoPower
+    end
+
+    def damage
+      return damage
+    end
+
+    def loot
+      return loot
+    end
+
+    def name
+      return name
+    end
+
+    def shieldPower
+      return shieldPower
     end
 
     def receiveShot(shot)
+      resultado=ShotResult::RESIST
+      if(shot>protection)
+        resultado=ShotResult::DONOTRESIST
+      end
 
+      return resultado
     end
 
     def to_s

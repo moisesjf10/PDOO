@@ -67,8 +67,8 @@ module Deepspace
           ", nShields: " + nShields.to_s
 
       return salida;
+      end
     end
-
 
   end
 end

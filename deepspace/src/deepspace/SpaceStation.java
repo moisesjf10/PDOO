@@ -1,6 +1,6 @@
 package deepspace;
 import java.util.ArrayList;
-import java.util.Iterator
+import java.util.Iterator;
 
 class SpaceStation {
     private static final int MAXFUEL = 100;
@@ -16,13 +16,14 @@ class SpaceStation {
     private Hangar hangar;
     
     private void assingFuelValue(float f){
-        if (MAXFUEL > f) {
+        if (f < MAXFUEL) {
             fuelUnits = f;
-        }
+        }else fuelUnits=MAXFUEL;
     }
     
     private void cleanPendingDamage(){
-        pendingDamage = null;
+        if(pendingDamage.hasNoEffect())
+            pendingDamage = null;
     }
     
     SpaceStation(String n, SuppliesPackage supplies){
@@ -35,6 +36,7 @@ class SpaceStation {
         weapons = new ArrayList<Weapon>();
         shieldBoosters = new ArrayList<ShieldBooster>();
         hangar= null;
+        pendingDamage=null;
     }
     
     public void cleanUpMountedItems(){
