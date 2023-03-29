@@ -82,7 +82,7 @@ class Hangar {
     
     
     public String toString (){
-         String salida="[Hangar] -> maxElements: "+ maxElements + 
+        String salida="[Hangar] -> maxElements: "+ maxElements + 
                 ", shieldBoosters: "+ shieldBoosters.toString() +
                 ", weapons: "+ weapons.toString();
         return salida;

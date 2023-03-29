@@ -1,5 +1,6 @@
 package deepspace;
 import java.util.ArrayList;
+import java.util.Iterator
 
 class SpaceStation {
     private static final int MAXFUEL = 100;
@@ -26,9 +27,10 @@ class SpaceStation {
     
     SpaceStation(String n, SuppliesPackage supplies){
         name = n;
-        ammoPower = supplies.getAmmoPower();
-        fuelUnits = supplies.getFuelUnits();
-        shieldPower = supplies.getShieldPower();
+        ammoPower = 0;
+        fuelUnits = 0;
+        shieldPower = 0;
+        this.receiveSupplies(supplies);
         nMedals =0;
         weapons = new ArrayList<Weapon>();
         shieldBoosters = new ArrayList<ShieldBooster>();
@@ -36,7 +38,18 @@ class SpaceStation {
     }
     
     public void cleanUpMountedItems(){
-        
+        Iterator<Weapon> i = weapons.iterator();
+        while(i.hasNext()){
+            if(i.next().getUses() == 0){
+                i.remove();
+            }
+        }
+        Iterator<ShieldBooster> j = shieldBoosters.iterator();
+        while(j.hasNext()){
+            if(j.next().getUses() == 0){
+                j.remove();
+            }
+        }
     }
             
     public void discardHangar(){
@@ -47,7 +60,9 @@ class SpaceStation {
         throw new UnsupportedOperationException();
     }
     public void discardShieldBoosterInHangar(int i){
-    
+        if(hangar != null){
+            hangar.removeShieldBoosters(i);
+        }
     }
     public void discardWeapon(int i){
         throw new UnsupportedOperationException();
@@ -132,7 +147,7 @@ class SpaceStation {
     public boolean receiveShieldBooster(ShieldBooster s){
         boolean resultado = false;
         if (hangar != null){
-            if (shieldBoosters.add(s) != null)
+            if (shieldBoosters.add(s) != false)
             resultado = true ;
         }
         return resultado;
@@ -142,23 +157,46 @@ class SpaceStation {
         throw new UnsupportedOperationException();
     }
     public void receiveSupplies(SuppliesPackage s){
-    
+        ammoPower += s.getAmmoPower();
+        fuelUnits += s.getFuelUnits();
+        shieldPower += s.getShieldPower();
     }
     public boolean receiveWeapon(Weapon w){
-    
+        boolean resultado = false;
+        if(hangar != null){
+            if(weapons.add(w) != false){
+                resultado = true;
+            }
+        }
+        return resultado;
+        
     }
     public void setLoot(Loot loot){
         throw new UnsupportedOperationException();
     }
     public void setPendingDamage(Damage d){
-    
+        d.adjust(weapons, shieldBoosters);
+        
     }
     public boolean validState(){
-    
+        boolean resultado = false;
+        if (pendingDamage.hasNoEffect()){
+            resultado = true;
+        }
+        return resultado;
     }
     
     public String toString (){
-        
+        String salida="[SpaceStation] -> ammoPower: "+ ammoPower + 
+                ", fuelUnits: "+ fuelUnits +
+                ", name: "+ name +
+                ", nMedals: "+ nMedals +
+                ", shieldPower: "+ shieldPower +
+                ", pendingDamage: "+ pendingDamage.toString() +
+                ", weapons: "+ weapons.toString() +
+                ", shieldBoosters: "+ shieldBoosters.toString() +
+                ", hangar: "+ hangar.toString();
+        return salida;
     }
     
     
