@@ -41,7 +41,7 @@ class Damage {
                encontrado=true;
            }
            i++;
-           it.next();
+           //puede faltar un next (aunque creo que está correcto no se como van las ED's en JAVA)
        }
 
        return pos;
