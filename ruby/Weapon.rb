@@ -1,7 +1,7 @@
 #encoding: utf-8
 #Esta clase representa a las armas de las que puede disponer una estación 
 #espacial para potenciar su energía al disparar
-require_relative "WeaponType" 
+require_relative "WeaponType"
 
 module Deepspace
 	class Weapon
@@ -54,9 +54,11 @@ module Deepspace
 			return aux
 		end
 
+		def getUIversion
+			return WeaponToUI.new(self)
+		end
 		def to_s
-			salida="[Weapon] -> name: " + name.to_s + ", type:" + type.to_s + ", uses: " + uses.to_s
-			return salida
+			getUIversion.to_s
 		end
 	end
 end

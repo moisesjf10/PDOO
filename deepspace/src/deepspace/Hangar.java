@@ -47,7 +47,7 @@ class Hangar {
         return insertar;
     }
     
-    public ShieldBooster removeShieldBoosters(int s){
+    public ShieldBooster removeShieldBooster(int s){
         ShieldBooster shield;
         if(s>=0 && s<shieldBoosters.size())
             shield=shieldBoosters.remove(s);

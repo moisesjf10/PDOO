@@ -63,7 +63,7 @@ class SpaceStation {
     }
     public void discardShieldBoosterInHangar(int i){
         if(hangar != null){
-            hangar.removeShieldBoosters(i);
+            hangar.removeShieldBooster(i);
         }
     }
     public void discardWeapon(int i){
@@ -113,7 +113,7 @@ class SpaceStation {
     
     public void mountShieldBooster(int i){
         if (hangar != null){
-            ShieldBooster boost = hangar.removeShieldBoosters(i);
+            ShieldBooster boost = hangar.removeShieldBooster(i);
             if (boost != null){
                 shieldBoosters.add(boost);
             }

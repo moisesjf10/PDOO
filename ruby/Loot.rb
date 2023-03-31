@@ -31,10 +31,11 @@ module Deepspace
 			@nMedals
 		end
 
+		def getUIversion
+			return LootToUI.new(self)
+		end
 		def to_s
-			salida="[Loot] -> nSupplies: "+ nSupplies.to_s + ", nWeapons: "+ nWeapons.to_s + ", nShields: "+ nShields.to_s + ", nHangars: "+ nHangars.to_s + ", nMedals; "+ nMedals.to_s
-
-			return salida
+			getUIversion.to_s
 		end
 	end
 end

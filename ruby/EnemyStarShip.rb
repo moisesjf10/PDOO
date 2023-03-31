@@ -57,13 +57,7 @@ module Deepspace
     end
 
     def to_s
-      salida="[EnemyStarShip] -> nWeapons: "+ name.to_s +
-        ", ammoPower: "+ ammoPower.to_s +
-        ", shieldPower: "+ shieldPower.to_s +
-        ", loot: "+ loot.to_s +
-        ", damage: "+ damage.to_s
-
-      return salida
+      getUIversion.to_s
     end
 
   end

@@ -30,6 +30,7 @@ class Damage {
        return (new DamageToUI(this));
    }
    
+   //Devuelve el indice de la posicion de la primera arma de la coleccion de armas cuyo tipo coincida con el segundo parametro
    private int arrayContainsType(ArrayList<Weapon> w, WeaponType t){
        Iterator<Weapon> it=w.iterator();
        boolean encontrado=false;
@@ -55,22 +56,24 @@ class Damage {
            d=new Damage(nweapon,nshields);
        }else{
            ArrayList<Weapon> aux = new ArrayList<Weapon>(w);
-           ArrayList<WeaponType> waux = new ArrayList<WeaponType>();
+           ArrayList<WeaponType> typeaux = new ArrayList<WeaponType>();
            
            for(WeaponType i: weapons){
                 int index = arrayContainsType(aux, i);
           
                 if(index != -1){
-                    waux.add(i); 
+                    typeaux.add(i);
                     aux.remove(index);
                 }
            }
            
-           d=new Damage(waux,nshields);
+           d=new Damage(typeaux,nshields);
            
        }
        
        return d;
+
+
    }
    
    public void discardWeapon(Weapon w){

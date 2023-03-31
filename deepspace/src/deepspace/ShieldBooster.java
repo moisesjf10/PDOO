@@ -41,8 +41,8 @@ class ShieldBooster {
     
     @Override
     public String toString(){
-        String salida="[ShieldBooster] -> Boost: " + boost
-                + ", Uses: " + uses;
+        String salida="[ShieldBooster] -> name: " + name + ", boost: " + boost
+                + ", uses: " + uses;
         return salida; 
     }
     

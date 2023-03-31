@@ -9,8 +9,8 @@ module Deepspace
     end
 
     def self.newCopy(h)
-		new(h.maxElements);
-		h.shieldBoosters.each{addShieldBooster(h.shieldBoosters.at(i)}
+		new(h.maxElements)
+		h.shieldBoosters.each{addShieldBooster(h.shieldBoosters.at(i))}
 		h.weapons.each{addWeapon(h.weapons.at(i))}
     end
 
@@ -26,15 +26,22 @@ module Deepspace
     public
     def addWeapon(w)
 		insertar = true;
-		if(spaceAvailable) @weapons.push(w)
-		else insertar = false 
+		if(spaceAvailable)
+      @weapons.push(w)
+    else
+      insertar = false
+    end
+
 		return insertar
     end
 
     def addShieldBooster(s)
 		insertar = true
-		if(spaceAvailable) @shieldBoosters.push(s)
-		else insertar = false
+		if(spaceAvailable)
+      @shieldBoosters.push(s)
+    else
+      insertar = false
+    end
 		return insertar
     end
 
@@ -69,11 +76,7 @@ module Deepspace
     end
 
     def to_s
-      salida="[Hangar] -> maxElements: "+ maxElements.to_s +
-        ", shieldBoosters: "+ shieldBoosters.to_s +
-        ", weapons: "+ weapons.to_s
-
-      return salida
+      getUIversion.to_s
     end
 
   end
