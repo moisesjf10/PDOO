@@ -112,20 +112,25 @@ class SpaceStation {
     }
     
     public void mountShieldBooster(int i){
+    
         if (hangar != null){
-            ShieldBooster boost = hangar.removeShieldBooster(i);
-            if (boost != null){
-                shieldBoosters.add(boost);
+            if(i >= 0 && i < hangar.getShieldBoosters().size()){
+                ShieldBooster boost = hangar.removeShieldBooster(i);
+                if (boost != null){
+                    shieldBoosters.add(boost);
+                }
             }
         }
-
     }
     public void mountWeapon(int i){
         if (hangar != null){
-            Weapon w = hangar.removeWeapon(i);
-            if (w != null){
-                weapons.add(w);
-            }
+            if(i >= 0 && i < hangar.getWeapons().size()){
+                Weapon w = hangar.removeWeapon(i);
+                if (w != null){
+                    weapons.add(w);
+                }
+               
+            }        
         }
 
     }   
