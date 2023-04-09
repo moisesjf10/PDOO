@@ -23,7 +23,7 @@ module Deepspace
       end
 
       def getUIversion
-        return WeaponToUI.new(self)
+        return DamageToUI.new(self)
       end
 
       private
