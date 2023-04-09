@@ -17,12 +17,12 @@ module Deepspace
       @ammoPower=0
       @fuelUnits=0
       @shieldPower=0
-      receiveSupplies(supplies)
       @nMedals=0
       @weapons=Array.new()
       @shieldBoosters=Array.new()
       @hangar=nil
       @pendingDamage=nil
+      receiveSupplies(supplies)
     end
 
     public
@@ -121,8 +121,9 @@ module Deepspace
     end
 
     def move
-      if ((@fuelUnits - getSpeed) > 0)
-        @fuelUnits -= getSpeed
+      @fuelUnits-=@fuelUnits*getSpeed
+      if (fuelUnits<0)
+        @fuelUnits = 0
       end
     end
 
@@ -152,7 +153,7 @@ module Deepspace
 
     def receiveSupplies(s)
       @ammoPower+=s.ammoPower
-      @fuelUnits+=s.fuelUnits
+      assignFuelValue(@fuelUnits + s.fuelUnits)
       @shieldPower+=s.shieldPower
     end
 
@@ -175,23 +176,6 @@ module Deepspace
 
     def to_s
       getUIversion.to_s
-    end
-
-    private
-    def assignFuelValue(f)
-      if(f < @@MAXFUEL)
-        fuelUnits=f
-      else
-        fuelUnits=@@MAXFUEL
-      end
-    end
-
-    def cleanPendingDamage
-      if(pendingDamage!=nil)
-        if(pendingDamage.hasNoEffect)
-          @pendingDamage=nil
-        end
-      end
     end
     def discardShieldBooster(i)
 
@@ -216,5 +200,22 @@ module Deepspace
     def fire
 
     end
+    private
+    def assignFuelValue(f)
+      if(f <= @@MAXFUEL)
+        fuelUnits=f
+      else
+        fuelUnits=@@MAXFUEL
+      end
+    end
+
+    def cleanPendingDamage
+      if(pendingDamage!=nil)
+        if(pendingDamage.hasNoEffect)
+          @pendingDamage=nil
+        end
+      end
+    end
+
   end
 end

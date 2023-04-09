@@ -139,8 +139,9 @@ class SpaceStation {
     }   
     
     public void move(){
-        if (fuelUnits - getSpeed() > 0){
-            fuelUnits = fuelUnits - getSpeed();
+        fuelUnits-=fuelUnits*getSpeed();
+        if (fuelUnits<0){
+            fuelUnits = 0;
         }
     }
     
