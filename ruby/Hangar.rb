@@ -59,11 +59,11 @@ module Deepspace
 
     def removeShieldBooster(s)
 		shield = nil
-		if (0<=w && w<@weapons.length) 
+		if (0<=s && s<@shieldBoosters.length)
 			shield = @shieldBoosters.at(s)
 			@shieldBoosters.delete_at(s)
 		end
-		return weapon
+		return shield
     end
 
     def removeWeapon(w)
