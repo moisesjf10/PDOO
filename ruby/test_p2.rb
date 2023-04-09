@@ -9,202 +9,66 @@ require_relative 'ShotResult'
 require_relative 'SuppliesPackage'
 require_relative 'Weapon'
 require_relative 'WeaponType'
+require_relative 'Damage'
 
 class TestP2
   def main
+    puts "Probando clase Damage"
+    damage=Deepspace::Damage.newNumericWeapons(15,20)
+    puts damage.nShields
+    puts damage.nWeapons
+    puts damage.weapons
+    puts damage.to_s
 
-    puts "Probando todos los métodos get:\n"
+    arma1=Deepspace::Weapon.new("laser",Deepspace::WeaponType::LASER,8)
+    arma2=Deepspace::Weapon.new("misil",Deepspace::WeaponType::MISSILE,10)
+    arma3=Deepspace::Weapon.new("plasma",Deepspace::WeaponType::PLASMA,15)
+    armas=Array.new(arma1,arma2,arma3)
 
-    puts "Enum Combat Result:\n"
+    arma=Array.new(arma1.type,arma2.type)
 
-    puts Deepspace::CombatResult::ENEMYWINS
-    puts Deepspace::CombatResult::NOCOMBAT
-    puts Deepspace::CombatResult::STATIONESCAPES
-    puts Deepspace::CombatResult::STATIONWINS
-    puts "Enum Game Character:\n"
+    damage2=Deepspace::Damage.newSpecificWeapons(arma,10)
+    escudo=Deepspace::ShieldBooster.new("name",2,2)
+    escudos=Array.new(escudo)
 
-    puts Deepspace::GameCharacter::SPACESTATION
-    puts Deepspace::GameCharacter::ENEMYSTARSHIP
+    puts damage2.nShields
+    puts damage2.nWeapons
+    puts damage2.weapons
 
-    puts "Enum Weapon Type: \n"
+    damage3=Deepspace::Damage.newCopy(damage2)
+    puts damage3.to_s
+    puts damage.hasNoEffect
 
-    puts Deepspace::WeaponType::LASER.power
-    puts Deepspace::WeaponType::MISSILE.power
-    puts Deepspace::WeaponType::PLASMA.power
+    damage4=Deepspace::Damage.newCopy(damage2.adjust(armas,escudos))
+    puts "----------"
+    puts damage2.to_s
+    puts damage4.to_s
+    puts "----------"
 
-    puts "Enum Shot Result: \n"
+    puts damage.nWeapons
+    damage.discardWeapon(arma1)
+    puts damage.nWeapons
+    puts damage2.weapons
+    damage2.discardWeapon(arma1)
+    puts damage2.weapons
+    puts damage.nShields
+    damage.discardShieldBooster
+    puts damage.nShields
 
-    puts Deepspace::ShotResult::DONOTRESIST
-    puts Deepspace::ShotResult::RESIST
+    #prueba del adjust
+    armas2=Array.new(arma1.type,arma2.type)
+    armas3=Array.new(arma1.type,arma2.type, arma3.type,arma1.type)
+    escudos2=Array.new(escudo)
 
-    puts "Probando las clases: \n"
+    damage5=Deepspace::Damage.newSpecificWeapons(armas2,4)
+    damage6=Deepspace::Damage.newSpecificWeapons(armas3,1)
+    damage7=Deepspace::Damage.newNumericWeapons(0,0)
+    damage8=Deepspace::Damage.newNumericWeapons(0,5)
 
-    puts "Clase Loot: \n"
-    loot = Deepspace::Loot.new(1,2,3,4,5)
-
-    puts loot.nSupplies
-    puts loot.nWeapons
-    puts loot.nShields
-    puts loot.nHangars
-    puts loot.nMedals
-
-    puts "Clase SuppliesPackage: \n"
-    p = Deepspace::SuppliesPackage.new(1.43,2.34,5.76)
-
-    puts p.ammoPower
-    puts p.fuelUnits
-    puts p.shieldPower
-
-    q = Deepspace::SuppliesPackage.newCopy(p)
-
-    puts q.ammoPower
-    puts q.fuelUnits
-    puts q.shieldPower
-
-    puts "Clase ShieldBooster: \n"
-
-    s = Deepspace::ShieldBooster.new("nave",3.26,26)
-    puts s.boost
-    puts s.uses
-    puts s.useIt
-
-    d = Deepspace::ShieldBooster.newCopy(s)
-
-    puts d.boost
-    puts d.uses
-    puts d.useIt
-
-    puts "Clase Weapon: \n"
-
-    w = Deepspace::Weapon.new("arma",Deepspace::WeaponType::LASER,40)
-
-    puts w.type
-    puts w.uses
-    puts w.power
-    puts w.useIt
-
-    z = Deepspace::Weapon.newCopy(w)
-
-    puts z.type
-    puts z.uses
-    puts z.power
-    puts z.useIt
-
-    puts "Clase Dice:\n"
-
-    dice = Deepspace::Dice.new
-
-    puts "init with Hangars:\n"
-
-    reps = 10000.00
-
-    numeros = []
-
-    for i in(0..9)
-      numeros.insert(i,0)
-    end
-
-    for i in(0..reps)
-      if (dice.initWithNHangars == 0)
-        numeros[0] += 1
-      else
-        numeros[1] += 1
-      end
-    end
-
-    puts "unos: " + (numeros[1]/reps).to_s
-    puts "ceros: " + (numeros[0]/reps).to_s
-
-    puts "\n"
-
-    numeros[0] = 0
-    numeros[1] = 0
-    puts "Compruebo el init with NWeapons:"
-
-    for i in (0..reps)
-      valor = dice.initWithNWeapons
-      if (valor == 1)
-        numeros[1] += 1
-      elsif (valor == 2)
-        numeros[2] += 1
-      elsif (valor == 3)
-        numeros[3] += 1
-      end
-    end
-
-    puts "unos:" + (numeros[1]/reps).to_s
-    puts "dos:" + (numeros[2]/reps).to_s
-    puts "tres:" + (numeros[3]/reps).to_s
-
-    puts "\n"
-
-    numeros[1] = 0
-    numeros[2] = 0
-    numeros[3] = 0
-
-    puts " init with nShields:\n"
-
-    for i in(0..reps)
-      if (dice.initWithNShields == 0)
-        numeros[0] += 1
-      else
-        numeros[1] += 1
-      end
-    end
-
-    puts "unos: " + (numeros[1]/reps).to_s
-    puts "ceros: " + (numeros[0]/reps).to_s
-
-    numeros[0] = 0
-    numeros[1] = 0
-
-    puts "Compruebo el whostars:\n"
-    players = 10
-    for i in(0..reps)
-      numeros[dice.whoStarts(players)] += 1
-    end
-
-    for i in(0..players-1)
-      puts "Probabilidad de " + i.to_s + " : " + (numeros[i]/reps).to_s + "\n"
-    end
-
-    puts "Compruebo el firstShot:\n"
-
-    estacion = 0;
-    enemigo = 0;
-
-    for i in(0..reps)
-      if (dice.firstShot == Deepspace::GameCharacter::SPACESTATION)
-        estacion += 1
-      else
-        enemigo += 1
-      end
-    end
-
-    puts "Estacion: " + (estacion/reps).to_s
-    puts "Enemigo: " + (enemigo/reps).to_s
-
-    numeros[0] = 0
-    numeros[1] = 0
-    numeros[2] = 0
-
-    speed = 0.4
-
-    puts "Compruebo el space Station Moves:\n"
-
-    for i in(0..reps)
-      if (dice.spaceStationMoves(speed) == false)
-        numeros[0] += 1
-      else
-        numeros[1] += 1
-      end
-    end
-
-    puts "unos: " + (numeros[1]/reps).to_s
-    puts "ceros: " + (numeros[0]/reps).to_s
-
-    puts "\n"
-
+    puts damage5.adjust(armas,escudos2).to_s
+    puts damage6.adjust(armas,escudos2).to_s
+    puts damage7.adjust(armas,escudos2).to_s
+    puts damage8.adjust(armas,escudos2).to_s
 
 
   end

@@ -28,28 +28,16 @@ module Deepspace
       @hangar=nil
     end
 
-    def discardShieldBooster(i)
-
-    end
-
     def discardShieldBoosterInHangar(i)
       if(@hangar != nil)
         @hangar.removeShieldBooster(i)
       end
     end
 
-    def discardWeapon(i)
-
-    end
-
     def discardWeaponInHangar(i)
       if(@hangar != nil)
         @hangar.removeWeapon(i)
       end
-    end
-
-    def fire
-
     end
 
     def ammoPower
@@ -127,10 +115,6 @@ module Deepspace
       end
     end
 
-    def protection
-
-    end
-
     def receiveHangar(h)
       if(@hangar==nil)
         @hangar=h
@@ -155,18 +139,10 @@ module Deepspace
       return resultado
     end
 
-    def receiveShot(shot)
-
-    end
-
     def receiveSupplies(s)
       @ammoPower+=s.ammoPower
       @fuelUnits+=s.fuelUnits
       @shieldPower+=s.shieldPower
-    end
-
-    def setLoot(loot)
-
     end
 
     def setPendingDamage(d)
@@ -204,7 +180,28 @@ module Deepspace
         @pendingDamage=nil
       end
     end
+    def discardShieldBooster(i)
 
+    end
 
+    def discardWeapon(i)
+
+    end
+
+    def setLoot(loot)
+
+    end
+
+    def receiveShot(shot)
+
+    end
+
+    def protection
+
+    end
+
+    def fire
+
+    end
   end
 end

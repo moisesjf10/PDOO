@@ -44,6 +44,24 @@ module Deepspace
       public
       def adjust(w, s)
 
+        num_shields = [@nShields,s.length].min
+        d = nil
+        if @weapons == null
+          num_weapon = [@nWeapons,w.length].min
+          d = Damage.newNumericWeapons(num_weapon,num_shields)
+        else
+          aux = w
+          waux = nil
+          @weapons.each do |n|
+            index = arrayContainsType(aux,n)
+            if index != -1
+              waux.push(n)
+              aux.delete_at(index)
+            end
+          end
+          d = Damage.newSpecificWeapons(waux,num_shields)
+        end
+        return d
       end
 
       def discardWeapon(w)
@@ -65,7 +83,12 @@ module Deepspace
       end
 
       def hasNoEffect
-
+        effect = false
+        if @nWeapons == @@NO_USE
+          effect = (@weapons.length + @nShields == 0)
+        else
+          effect = (@nWeapons + @nShields == 0)
+        end
       end
 
       def nShields
