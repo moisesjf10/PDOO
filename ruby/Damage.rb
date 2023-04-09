@@ -1,5 +1,5 @@
 #encoding: utf-8
-
+require_relative "DamageToUI"
 module Deepspace
   class Damage
       @@NO_USE = -1
@@ -43,15 +43,14 @@ module Deepspace
 
       public
       def adjust(w, s)
-
         num_shields = [@nShields,s.length].min
         d = nil
-        if @weapons == null
+        if @weapons == nil
           num_weapon = [@nWeapons,w.length].min
           d = Damage.newNumericWeapons(num_weapon,num_shields)
         else
-          aux = w
-          waux = nil
+          aux = w.clone
+          waux = Array.new()
           @weapons.each do |n|
             index = arrayContainsType(aux,n)
             if index != -1
@@ -104,7 +103,7 @@ module Deepspace
       end
 
       def to_s
-        getUIversion.to_s
+        getUIversion().to_s
       end
 
 

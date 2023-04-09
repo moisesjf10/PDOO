@@ -1,5 +1,8 @@
 #encoding: utf-8
-
+require_relative "EnemyToUI"
+require_relative "Damage"
+require_relative "Loot"
+require_relative "ShotResult"
 module Deepspace
   class EnemyStarShip
     def initialize(n, a, s, l, d)

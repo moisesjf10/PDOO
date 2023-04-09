@@ -1,4 +1,5 @@
 #encoding: utf-8
+require_relative "LootToUI"
 #Esta clase representa el botín que se obtiene al vencer a una nave enemiga. 
 
 module Deepspace

@@ -2,7 +2,7 @@
 #Esta clase representa a las armas de las que puede disponer una estación 
 #espacial para potenciar su energía al disparar
 require_relative "WeaponType"
-
+require_relative "WeaponToUI"
 module Deepspace
 	class Weapon
 		@DEFAULT_POWER = 1.0

@@ -1,5 +1,8 @@
 #encoding: utf-8
-
+require_relative "HangarToUI"
+require_relative "Weapon"
+require_relative "ShieldBooster"
+require_relative "WeaponType"
 module Deepspace
   class Hangar
     def initialize(capacity)
@@ -9,52 +12,57 @@ module Deepspace
     end
 
     def self.newCopy(h)
-		new(h.maxElements)
-		h.shieldBoosters.each{addShieldBooster(h.shieldBoosters.at(i))}
-		h.weapons.each{addWeapon(h.weapons.at(i))}
+      copy=new(h.maxElements)
+      h.shieldBoosters.each do |shieldBooster|
+        copy.addShieldBooster(shieldBooster)
+      end
+      h.weapons.each do |weapon|
+        copy.addWeapon(weapon)
+      end
+      return copy
     end
 
     def getUIversion
-		return HangarToUI.new(self)
+		  return HangarToUI.new(self)
     end
 
-    private
+    public
     def spaceAvailable
-		(@shieldBoosters.length + @weapons.length) < @maxElements
+		  (@shieldBoosters.length + @weapons.length) < @maxElements
     end
 
     public
     def addWeapon(w)
-		insertar = true;
-		if(spaceAvailable)
-      @weapons.push(w)
-    else
-      insertar = false
-    end
+      insertar = true;
+      if(spaceAvailable)
+        @weapons.push(w)
+      else
+        insertar = false
+      end
 
-		return insertar
-    end
+      return insertar
+      end
 
-    def addShieldBooster(s)
-		insertar = true
-		if(spaceAvailable)
-      @shieldBoosters.push(s)
-    else
-      insertar = false
-    end
-		return insertar
-    end
+      def addShieldBooster(s)
+        insertar = true
+        if(spaceAvailable)
+          @shieldBoosters.push(s)
+        else
+          insertar = false
+        end
+        return insertar
+      end
 
     def maxElements
-		@maxElements
+		  @maxElements
     end
 
     def shieldBoosters
-		@shieldBoosters
+		  @shieldBoosters
     end
 
     def weapons
-		@weapons
+		  @weapons
     end
 
     def removeShieldBooster(s)

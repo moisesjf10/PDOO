@@ -1,5 +1,12 @@
 #encoding: utf-8
-
+require_relative "SpaceStationToUI"
+require_relative "Hangar"
+require_relative "Damage"
+require_relative "Weapon"
+require_relative "WeaponType"
+require_relative "Loot"
+require_relative "ShieldBooster"
+require_relative "SuppliesPackage"
 module Deepspace
   class SpaceStation
     @@MAXFUEL = 100

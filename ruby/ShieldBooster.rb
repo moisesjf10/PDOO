@@ -1,4 +1,4 @@
-
+require_relative "ShieldToUI"
 module Deepspace
 	class ShieldBooster
 		@DEFAULT_BOOST = 1.0
