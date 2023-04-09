@@ -187,8 +187,10 @@ module Deepspace
     end
 
     def cleanPendingDamage
-      if(pendingDamage.hasNoEffect)
-        @pendingDamage=nil
+      if(pendingDamage!=nil)
+        if(pendingDamage.hasNoEffect)
+          @pendingDamage=nil
+        end
       end
     end
     def discardShieldBooster(i)

@@ -22,8 +22,11 @@ class SpaceStation {
     }
     
     private void cleanPendingDamage(){
-        if(pendingDamage.hasNoEffect())
-            pendingDamage = null;
+        if(pendingDamage!=null){
+            if(pendingDamage.hasNoEffect())
+                pendingDamage = null;
+        }
+       
     }
     
     SpaceStation(String n, SuppliesPackage supplies){

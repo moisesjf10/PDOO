@@ -27,7 +27,7 @@ module Deepspace
     end
 
     def protection
-      return shieldPower
+      return @shieldPower
     end
 
     def ammoPower
@@ -35,19 +35,19 @@ module Deepspace
     end
 
     def damage
-      return damage
+      return @damage
     end
 
     def loot
-      return loot
+      return @loot
     end
 
     def name
-      return name
+      return @name
     end
 
     def shieldPower
-      return shieldPower
+      return @shieldPower
     end
 
     def receiveShot(shot)
