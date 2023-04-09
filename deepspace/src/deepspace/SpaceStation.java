@@ -168,7 +168,7 @@ class SpaceStation {
     }
     public void receiveSupplies(SuppliesPackage s){
         ammoPower += s.getAmmoPower();
-        fuelUnits += s.getFuelUnits();
+        assingFuelValue(fuelUnits+s.getFuelUnits());
         shieldPower += s.getShieldPower();
     }
     public boolean receiveWeapon(Weapon w){
