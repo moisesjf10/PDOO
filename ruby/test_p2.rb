@@ -87,7 +87,9 @@ class TestP2
     puts damage6.adjust(armas, escudos2).to_s
     puts damage7.adjust(armas, escudos2).to_s
     puts damage8.adjust(armas, escudos2).to_s
-
+    puts "\n"
+    puts "\n"
+    puts "----------------------------------------------------------------------------"
     puts "Probando clase Hangar"
     prueba = Deepspace::Hangar.new(4)
     puts prueba.maxElements
@@ -116,7 +118,9 @@ class TestP2
     puts prueba2.shieldBoosters
     puts prueba2.spaceAvailable
     puts prueba2.to_s
-
+    puts "\n"
+    puts "\n"
+    puts "----------------------------------------------------------------------------"
     puts "Probando clase SpaceStation"
     supplies = Deepspace::SuppliesPackage.new(1,2,3)
     prueba = Deepspace::SpaceStation.new("Prueba",supplies)
@@ -169,7 +173,9 @@ class TestP2
     prueba.setPendingDamage(damage)
     puts prueba.pendingDamage
     puts prueba.validState
-
+    puts "\n"
+    puts "\n"
+    puts "----------------------------------------------------------------------------"
     puts "Probando clase EnemyStarShip"
     loot = Deepspace::Loot.new(1,2,3,4,5)
     damage = Deepspace::Damage.newNumericWeapons(2,2)
