@@ -201,7 +201,7 @@ module Deepspace
 
     def cleanPendingDamage
       if(pendingDamage.hasNoEffect)
-        pendingDamage=nil
+        @pendingDamage=nil
       end
     end
 
