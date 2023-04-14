@@ -1,6 +1,5 @@
 package deepspace;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 class GameUniverse{
     private static final int WIN=10;
@@ -73,26 +72,7 @@ class GameUniverse{
     }
     
     public void init(ArrayList<String> names){
-        if(gameState.getState()==GameState.CANNOTPLAY){
-            CardDealer dealer = CardDealer.getInstance();
-            for(String name: names){
-                SuppliesPackage supplies=new SuppliesPackage(dealer.nextSuppliesPackage());
-                SpaceStation station=new SpaceStation(name,supplies);
-                spaceStations.add(station);
-
-                int nh = dice.initWithNHangars();
-                int nw = dice.initWithNWeapons();
-                int ns = dice.initWithNShields();
-
-                Loot lo = new Loot(0,nw,ns,nh,0);
-                station.setLoot(lo);
-            }
-            currentStationIndex=dice.whoStarts(names.size());
-            currentStation=spaceStations.get(currentStationIndex);
-            EnemyStarShip currentEnemy = dealer.nextEnemy();
-
-            gameState.next(turns, spaceStations.size());
-        }
+        throw new UnsupportedOperationException(); 
     }
     
     public void mountShieldBooster(int i){
@@ -109,16 +89,7 @@ class GameUniverse{
     }
     
     public boolean nextTurn(){
-        boolean nexturn=false;
-        if(gameState.getState()==GameState.AFTERCOMBAT){
-            boolean stationState=currentStation.validState();
-            if(stationState){
-                currentStationIndex=(currentStationIndex+1)%spaceStations.size();
-                turns++;
-            }
-        }
-
-        return nexturn;
+        throw new UnsupportedOperationException();
     }
     
     public String toString(){

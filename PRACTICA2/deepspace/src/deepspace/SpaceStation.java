@@ -62,14 +62,7 @@ class SpaceStation {
     }
           
     public void discardShieldBooster(int i){
-        int size = shieldBoosters.size();
-        if (i>= 0 && i < size){
-            ShieldBooster sh = shieldBoosters.remove(i);
-            if(pendingDamage != null){
-                pendingDamage.discardShieldBooster();
-                cleanPendingDamage();
-            }
-        }
+        throw new UnsupportedOperationException();
     }
     public void discardShieldBoosterInHangar(int i){
         if(hangar != null){
@@ -77,14 +70,7 @@ class SpaceStation {
         }
     }
     public void discardWeapon(int i){
-        int size = weapons.size();
-        if (i>= 0 && i < size){
-            Weapon w = weapons.remove(i);
-            if(pendingDamage != null){
-                pendingDamage.discardWeapon(w);
-                cleanPendingDamage();
-            }
-        }
+        throw new UnsupportedOperationException();
     }
     public void discardWeaponInHangar(int i){
         if (hangar != null){
@@ -92,12 +78,7 @@ class SpaceStation {
         }
     }
     public float fire(){
-        float factor = 1;
-        Iterator<Weapon> i = weapons.iterator();
-        while(i.hasNext()){
-            factor *= i.next().useIt();
-        }
-        return factor;
+        throw new UnsupportedOperationException();
     }
     public float getAmmoPower(){
         return ammoPower;
@@ -165,12 +146,7 @@ class SpaceStation {
     }
     
     public float protection(){
-        Iterator<ShieldBooster> i = shieldBoosters.iterator();
-        float factor = 1;
-        while(i.hasNext()){
-            factor *= i.next().useIt();
-        }
-        return factor;
+        throw new UnsupportedOperationException();
     }
     
     public void receiveHangar(Hangar h){
@@ -188,15 +164,7 @@ class SpaceStation {
     }
     
     public ShotResult receiveShot(float shot){
-        float myProtection = protection();
-        ShotResult resultado = ShotResult.DONOTRESIST;
-        if(myProtection >= shot){
-            shieldPower -= SHIELDLOSSPERUNITSHOT*shot;
-            shieldPower = Math.max(0.0f, shieldPower);
-        }else{
-            shieldPower = 0.0f
-        }
-        return resultado;
+        throw new UnsupportedOperationException();
     }
     public void receiveSupplies(SuppliesPackage s){
         ammoPower += s.getAmmoPower();
@@ -213,28 +181,7 @@ class SpaceStation {
         
     }
     public void setLoot(Loot loot){
-        CardDealer dealer = CardDealer.getInstance();
-        int h = loot.getNHangars();
-        if (h>0){
-            Hangar hangar = dealer.nextHangar();
-            receiveHangar(hangar);
-        }
-        int elements = loot.getNSupplies();
-        for (int i = 1; i < elements; i++ ) {
-            SuppliesPackage sup = dealer.nextSuppliesPackage();
-            receiveSupplies(sup);
-        }
-        elements = loot.getNWeapons();
-        for(int i = 1; i < elements; i++){
-            Weapon weap = dealer.nextWeapon();
-            receiveWeapon(weap);
-        }
-        elements = loot.getNShields();
-        for(int i = 1; i < elements; i++){
-            ShieldBooster sh = dealer.nextShieldBooster();
-            receiveShieldBooster(sh);
-        }
-        nMedals += loot.getNMedals();
+        throw new UnsupportedOperationException();
     }
     public void setPendingDamage(Damage d){
         pendingDamage=d.adjust(weapons, shieldBoosters);
