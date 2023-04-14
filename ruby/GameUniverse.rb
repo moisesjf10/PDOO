@@ -14,7 +14,7 @@ module Deepspace
       @spaceStations = Array.new()
     end
 
-    def combat(station, enemy)
+    def combatGo(station, enemy)
 
     end
 
@@ -66,7 +66,28 @@ module Deepspace
     end
 
     def init(names)
+        state = @gameState.state
+        dice = Dice.new()
+        	if(state == GameState::CANNOTPLAY)
+        		dealer = CardDealer.new()
+        		names.each do |n|
+        		    supplies = dealer.nextSuppliesPackage()
+        		    station = SpaceStation.new(n,supplies)
+        		    @spaceStations.push(station)
 
+        		    nh = dice.initWithNHangars()
+        		    nw = dice.initWithNWeapons()
+        		    ns = dice.initWithNShields()
+
+        		    lo = Loot.new(0,nw,ns,nh,0)
+        		    station.setLoot(lo)
+        		end
+        		@currentStationIndex = dice.whoStars(names.length())
+        		@currentStation = get(@currentStationIndex)
+        		@currentEnemy = dealer.nextEnemy()
+
+        		@gameState.next(@turns,spaceStations.length())
+        	end
     end
 
     def mountShieldBooster(i)
@@ -82,7 +103,7 @@ module Deepspace
     end
 
     def nextTurn
-
+        state = @gameState.state
     end
 
     def to_s
