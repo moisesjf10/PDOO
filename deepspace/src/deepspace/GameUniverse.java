@@ -1,8 +1,7 @@
 package deepspace;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-class GameUniverse{
+public class GameUniverse{
     private static final int WIN=10;
     private int currentStationIndex;
     private int turns;
@@ -23,13 +22,57 @@ class GameUniverse{
          
     }
     
-    CombatResult combat(SpaceStation space, EnemyStarShip enemy){
-        throw new UnsupportedOperationException();
-        
+    CombatResult combat(SpaceStation station, EnemyStarShip enemy){
+        boolean enemyWins;
+        GameCharacter ch = dice.firstShot();
+        CombatResult combatResult;
+
+        if(ch == GameCharacter.ENEMYSTARSHIP){
+            float fire = enemy.fire();
+            ShotResult result = station.receiveShot(fire);
+
+            if(result == ShotResult.RESIST){
+                fire = station.fire();
+                result = enemy.receiveShot(fire);
+                enemyWins = (result==ShotResult.RESIST);
+            }else{
+                enemyWins = true;
+            }
+        }else{
+            float fire = station.fire();
+            ShotResult result = enemy.receiveShot(fire);
+            enemyWins = (result==ShotResult.RESIST);
+        }
+
+        if(enemyWins){
+            float s = station.getSpeed();
+            boolean moves = dice.spaceStationMoves(s);
+
+            if(moves){
+                Damage damage = enemy.getDamage();
+                station.setPendingDamage(damage);
+                combatResult = CombatResult.ENEMYWINS;
+            }else{
+                station.move();
+                combatResult = CombatResult.STATIONESCAPES;
+            }
+        }else{
+            Loot aLoot = enemy.getLoot();
+            station.setLoot(aLoot);
+            combatResult = CombatResult.STATIONWINS;
+        }
+        gameState.next(turns, spaceStations.size());
+
+        return combatResult;
     }
     
     public CombatResult combat(){
-        throw new UnsupportedOperationException();
+        CombatResult result=CombatResult.NOCOMBAT;
+        GameState state=gameState.getState();
+        if(state==GameState.BEFORECOMBAT || state==GameState.INIT){
+            result=combat(currentStation,currentEnemy);
+        }
+        return result;
     }
     
     public void discardHangar(){
@@ -115,9 +158,14 @@ class GameUniverse{
             if(stationState){
                 currentStationIndex=(currentStationIndex+1)%spaceStations.size();
                 turns++;
+                currentStation=spaceStations.get(currentStationIndex);
+                currentStation.cleanUpMountedItems();
+                CardDealer dealer=CardDealer.getInstance();
+                currentEnemy=dealer.nextEnemy();
+                gameState.next(turns,spaceStations.size());
+                nexturn=true;
             }
         }
-
         return nexturn;
     }
     

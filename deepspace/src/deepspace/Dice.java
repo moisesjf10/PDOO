@@ -1,7 +1,7 @@
 package deepspace;
 import java.util.Random;
 
-class Dice {
+public class Dice {
     private final float NHANGARSPROB;
     private final float NSHIELDSPROB;
     private final float NWEAPONSPROB;

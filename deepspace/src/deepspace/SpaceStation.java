@@ -2,7 +2,7 @@ package deepspace;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-class SpaceStation {
+public class SpaceStation {
     private static final int MAXFUEL = 100;
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f;
     private float ammoPower;
@@ -194,7 +194,7 @@ class SpaceStation {
             shieldPower -= SHIELDLOSSPERUNITSHOT*shot;
             shieldPower = Math.max(0.0f, shieldPower);
         }else{
-            shieldPower = 0.0f
+            shieldPower = 0.0f;
         }
         return resultado;
     }

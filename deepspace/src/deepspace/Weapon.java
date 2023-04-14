@@ -1,7 +1,7 @@
 
 package deepspace;
 
-class Weapon {
+public class Weapon {
     private String name;
     private WeaponType type;
     private int uses;

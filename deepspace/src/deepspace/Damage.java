@@ -2,7 +2,7 @@ package deepspace;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-class Damage {
+public class Damage {
    private int nWeapons;
    private int nShields;
    private ArrayList<WeaponType> weapons;
