@@ -91,14 +91,7 @@ public class SpaceStation {
             hangar.removeWeapon(i);
         }
     }
-    public float fire(){
-        float factor = 1;
-        Iterator<Weapon> i = weapons.iterator();
-        while(i.hasNext()){
-            factor *= i.next().useIt();
-        }
-        return factor;
-    }
+    
     public float getAmmoPower(){
         return ammoPower;
     }
@@ -165,12 +158,19 @@ public class SpaceStation {
     }
     
     public float protection(){
-        Iterator<ShieldBooster> i = shieldBoosters.iterator();
         float factor = 1;
-        while(i.hasNext()){
-            factor *= i.next().useIt();
+        for(ShieldBooster s: shieldBoosters){
+            factor*=s.useIt();
         }
-        return factor;
+        return shieldPower*factor;
+    }
+    
+    public float fire(){
+        float factor = 1;
+        for(Weapon w: weapons){
+            factor*=w.useIt();
+        }
+        return ammoPower*factor;
     }
     
     public void receiveHangar(Hangar h){
@@ -198,11 +198,13 @@ public class SpaceStation {
         }
         return resultado;
     }
+    
     public void receiveSupplies(SuppliesPackage s){
         ammoPower += s.getAmmoPower();
         assingFuelValue(fuelUnits+s.getFuelUnits());
         shieldPower += s.getShieldPower();
     }
+    
     public boolean receiveWeapon(Weapon w){
         boolean resultado = false;
         if(hangar != null){
@@ -212,6 +214,7 @@ public class SpaceStation {
         return resultado;
         
     }
+    
     public void setLoot(Loot loot){
         CardDealer dealer = CardDealer.getInstance();
         int h = loot.getNHangars();
@@ -236,6 +239,7 @@ public class SpaceStation {
         }
         nMedals += loot.getNMedals();
     }
+    
     public void setPendingDamage(Damage d){
         pendingDamage=d.adjust(weapons, shieldBoosters);
         

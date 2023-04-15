@@ -7,6 +7,7 @@ require_relative "WeaponType"
 require_relative "Loot"
 require_relative "ShieldBooster"
 require_relative "SuppliesPackage"
+require_relative 'CardDealer'
 module Deepspace
   class SpaceStation
     @@MAXFUEL = 100
@@ -178,27 +179,92 @@ module Deepspace
       getUIversion.to_s
     end
     def discardShieldBooster(i)
+      size=@shieldBoosters.length
+      if(i>=0 && i<size)
+        s=@shieldBoosters.delete_at(i)
 
+        if(@pendingDamage!=nil)
+          @pendingDamage.discardShieldBooster
+          cleanPendingDamage
+        end
+      end
     end
 
     def discardWeapon(i)
+      size=@weapons.length
+      if(i>=0 && i<size)
+        w=@weapons.delete_at(i)
 
+        if(@pendingDamage!=nil)
+          @pendingDamage.discardWeapon(w)
+          cleanPendingDamage
+        end
+      end
     end
 
     def setLoot(loot)
+      dealer=CardDealer.instance
+      h=loot.nHangars
 
+      if(h>0)
+        hangar=dealer.nextHangar
+        receiveHangar(hangar)
+      end
+
+      elements=loot.nSupplies
+
+      elements.times do
+        sup=dealer.nextSuppliesPackage
+        receiveSupplies(sup)
+      end
+
+      elements=loot.nWeapons
+
+      elements.times do
+        weap=dealer.nextWeapon
+        receiveWeapon(weap)
+      end
+
+      elements=loot.nShields
+
+      elements.times do
+        sh=dealer.nextShieldBooster
+        receiveShieldBooster(sh)
+      end
+
+      @nMedals+=loot.nMedals
     end
 
     def receiveShot(shot)
+      shotresult=ShotResult::DONOTRESIST
+      myProtection=protection
+      if(myProtection>=shot)
+        @shieldPower-=@@SHIELDLOSSPERUNITSHOT*shot
+        if(@shieldPower<0.0)
+          @shieldPower=0.0
+        end
+        shotresult=ShotResult::RESIST
+      else
+        @shieldPower=0.0
+      end
 
+      return shotresult
     end
 
     def protection
-
+      factor=1
+      shieldBoosters.each do |s|
+        factor*=s.useIt
+      end
+      return shieldPower*factor
     end
 
     def fire
-
+      factor=1.0
+      weapons.each do |w|
+        factor*=w.useIt
+      end
+      return ammoPower*factor
     end
     private
     def assignFuelValue(f)
