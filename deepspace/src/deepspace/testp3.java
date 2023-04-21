@@ -16,10 +16,10 @@ public class testp3 {
         Weapon weapon5 = new Weapon("arma5",WeaponType.MISSILE,8);
         Weapon weapon6 = new Weapon("arma6",WeaponType.MISSILE,5);
 
-        ShieldBooster escudo1 = new ShieldBooster("escudo1", 1, 1);
-        ShieldBooster escudo2 = new ShieldBooster("Escudo ACME",1,2);
-        ShieldBooster escudo3 =new ShieldBooster("Escudo ACME",1,2);
-        ShieldBooster escudo4 =new ShieldBooster("Escudo normal",3.0f,2);
+        ShieldBooster escudo1 = new ShieldBooster("escudo1", 2, 4);
+        ShieldBooster escudo2 = new ShieldBooster("Escudo ACME",1,4);
+        ShieldBooster escudo3 =new ShieldBooster("Escudo ACME",1,4);
+        ShieldBooster escudo4 =new ShieldBooster("Escudo normal",3.0f,4);
 
 
         space.receiveWeapon(weapon1);
@@ -34,6 +34,12 @@ public class testp3 {
         space.receiveShieldBooster(escudo3);
         space.receiveShieldBooster(escudo4);
 
+        space.mountWeapon(0);
+        space.mountWeapon(3);
+
+        space.mountShieldBooster(0);
+        space.mountShieldBooster(3);
+
         float fire = space.fire();
 
         float protection = space.protection();
@@ -41,6 +47,21 @@ public class testp3 {
         System.out.println("fuego: " + fire + "\n");
 
         System.out.println("proteccion: " + protection + "\n");
+
+        fire = space.fire();
+
+        protection = space.protection();
+
+        System.out.println("fuego: " + fire + "\n");
+
+        System.out.println("proteccion: " + protection + "\n");
+
+        System.out.println(space.receiveShot(1));
+
+        System.out.println(space.receiveShot(1000));
+
+        Loot l = new Loot(2,2,2,2,2);
+        space.setLoot(l);
 
     }
 }

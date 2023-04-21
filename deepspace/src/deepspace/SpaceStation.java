@@ -192,6 +192,7 @@ public class SpaceStation {
         if(myProtection >= shot){
             shieldPower -= SHIELDLOSSPERUNITSHOT*shot;
             shieldPower = Math.max(0.0f, shieldPower);
+            resultado = ShotResult.RESIST;
         }else{
             shieldPower = 0.0f;
         }
