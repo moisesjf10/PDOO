@@ -127,7 +127,6 @@ public class SpaceStation {
     }
     
     public void mountShieldBooster(int i){
-    
         if (hangar != null){
             if(i >= 0 && i < hangar.getShieldBoosters().size()){
                 ShieldBooster boost = hangar.removeShieldBooster(i);
