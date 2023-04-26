@@ -64,7 +64,7 @@ public class SpaceStation {
     public void discardShieldBooster(int i){
         int size = shieldBoosters.size();
         if (i>= 0 && i < size){
-            ShieldBooster sh = shieldBoosters.remove(i);
+            ShieldBooster sh = new ShieldBooster(shieldBoosters.remove(i));
             if(pendingDamage != null){
                 pendingDamage.discardShieldBooster();
                 cleanPendingDamage();
@@ -79,7 +79,7 @@ public class SpaceStation {
     public void discardWeapon(int i){
         int size = weapons.size();
         if (i>= 0 && i < size){
-            Weapon w = weapons.remove(i);
+            Weapon w = new Weapon(weapons.remove(i));
             if(pendingDamage != null){
                 pendingDamage.discardWeapon(w);
                 cleanPendingDamage();
@@ -117,7 +117,13 @@ public class SpaceStation {
         return shieldPower;
     }
     public float getSpeed(){
-        return (fuelUnits/MAXFUEL);
+        float speed;
+        if (MAXFUEL == 0){
+            speed=0;
+        }else{
+            speed = fuelUnits/MAXFUEL;
+        }
+        return speed;
     }
     public SpaceStationToUI getUIversion(){
         return new SpaceStationToUI(this);
@@ -129,9 +135,9 @@ public class SpaceStation {
     public void mountShieldBooster(int i){
         if (hangar != null){
             if(i >= 0 && i < hangar.getShieldBoosters().size()){
-                ShieldBooster boost = hangar.removeShieldBooster(i);
-                if (boost != null){
-                    shieldBoosters.add(boost);
+                ShieldBooster s = new ShieldBooster(hangar.removeShieldBooster(i));
+                if (s != null){
+                    shieldBoosters.add(s);
                 }
             }
         }
@@ -139,7 +145,7 @@ public class SpaceStation {
     public void mountWeapon(int i){
         if (hangar != null){
             if(i >= 0 && i < hangar.getWeapons().size()){
-                Weapon w = hangar.removeWeapon(i);
+                Weapon w = new Weapon(hangar.removeWeapon(i));
                 if (w != null){
                     weapons.add(w);
                 }
@@ -224,29 +230,30 @@ public class SpaceStation {
         }
         int elements = loot.getNSupplies();
         for (int i = 1; i < elements; i++ ) {
-            SuppliesPackage sup = dealer.nextSuppliesPackage();
+            SuppliesPackage sup = new SuppliesPackage(dealer.nextSuppliesPackage());
             receiveSupplies(sup);
         }
         elements = loot.getNWeapons();
         for(int i = 1; i < elements; i++){
-            Weapon weap = dealer.nextWeapon();
+            Weapon weap = new Weapon(dealer.nextWeapon());
             receiveWeapon(weap);
         }
         elements = loot.getNShields();
         for(int i = 1; i < elements; i++){
-            ShieldBooster sh = dealer.nextShieldBooster();
+            ShieldBooster sh = new ShieldBooster(dealer.nextShieldBooster());
             receiveShieldBooster(sh);
         }
         nMedals += loot.getNMedals();
     }
     
     public void setPendingDamage(Damage d){
-        pendingDamage=d.adjust(weapons, shieldBoosters);
+        if(d!=null)
+            pendingDamage=d.adjust(weapons, shieldBoosters);
         
     }
     public boolean validState(){
         boolean resultado = false;
-        if (pendingDamage.hasNoEffect()){
+        if (pendingDamage==null || pendingDamage.hasNoEffect()){
             resultado = true;
         }
         return resultado;
@@ -258,7 +265,7 @@ public class SpaceStation {
                 ", name: "+ name +
                 ", nMedals: "+ nMedals +
                 ", shieldPower: "+ shieldPower +
-                ", pendingDamage: "+ pendingDamage.toString() +
+                /*", pendingDamage: "+ pendingDamage.toString() +*/
                 ", weapons: "+ weapons.toString() +
                 ", shieldBoosters: "+ shieldBoosters.toString() +
                 ", hangar: "+ hangar.toString();

@@ -1,9 +1,12 @@
 package deepspace;
 
+import java.util.ArrayList;
+
 public class testp3 {
     public static void main(String[] args) {
         SuppliesPackage supplies = new SuppliesPackage(1, 2, 3);
         SpaceStation space = new SpaceStation("prueba", supplies);
+        Damage d = new Damage(1,1);
 
         Hangar hangar = new Hangar(100);
 
@@ -60,8 +63,36 @@ public class testp3 {
 
         System.out.println(space.receiveShot(1000));
 
+        System.out.println(space.toString());
+
+        space.setPendingDamage(d);
+
+        System.out.println(space.getPendingDamage().toString());
+
+        space.discardWeapon(0);
+        space.discardShieldBooster(0);
+
+        System.out.println(space.toString());
+
+        System.out.println(space.toString());
         Loot l = new Loot(2,2,2,2,2);
         space.setLoot(l);
+
+
+        // Empezamos con la clase GameUniverse
+
+        ArrayList<String> nombres = new ArrayList<String>();
+        nombres.add("Pedro");
+        nombres.add("Antonio");
+        nombres.add("Pepe");
+
+        GameUniverse game = new GameUniverse();
+
+        game.init(nombres);
+
+        game.
+
+
 
     }
 }

@@ -93,8 +93,8 @@ public class Damage {
    public boolean hasNoEffect(){
        boolean effect;
 
-       if(nWeapons==NO_USE) effect = (weapons.size() + nShields == 0);
-       else effect = (nWeapons + nShields == 0);
+       if(nWeapons==NO_USE) effect = ((weapons.size() + nShields) == 0);
+       else effect = ((nWeapons + nShields) == 0);
 
        return effect;
    }

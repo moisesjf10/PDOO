@@ -17,6 +17,7 @@ public class GameUniverse{
         turns=0;
         gameState=new GameStateController();
         dice=new Dice();
+        currentEnemy=null;
         currentStation=null;
         spaceStations=new ArrayList<>();
          
@@ -48,7 +49,7 @@ public class GameUniverse{
             float s = station.getSpeed();
             boolean moves = dice.spaceStationMoves(s);
 
-            if(moves){
+            if(!moves){
                 Damage damage = enemy.getDamage();
                 station.setPendingDamage(damage);
                 combatResult = CombatResult.ENEMYWINS;
@@ -68,7 +69,7 @@ public class GameUniverse{
     
     public CombatResult combat(){
         CombatResult result=CombatResult.NOCOMBAT;
-        GameState state=gameState.getState();
+        GameState state=getState();
         if(state==GameState.BEFORECOMBAT || state==GameState.INIT){
             result=combat(currentStation,currentEnemy);
         }
@@ -132,7 +133,7 @@ public class GameUniverse{
             }
             currentStationIndex=dice.whoStarts(names.size());
             currentStation=spaceStations.get(currentStationIndex);
-            EnemyStarShip currentEnemy = dealer.nextEnemy();
+            currentEnemy = dealer.nextEnemy();
 
             gameState.next(turns, spaceStations.size());
         }
@@ -168,7 +169,8 @@ public class GameUniverse{
         }
         return nexturn;
     }
-    
+
+    @Override
     public String toString(){
         String salida="[GameUniverse] -> WIN: "+ WIN +
                 ", currentStationIndex: "+ currentStationIndex +
