@@ -1,4 +1,14 @@
 #encoding: utf-8
+require_relative 'GameUniverseToUI'
+require_relative 'GameStateController'
+require_relative 'Dice'
+require_relative 'Loot'
+require_relative 'CombatResult'
+require_relative 'GameCharacter'
+require_relative 'ShotResult'
+require_relative 'SpaceStation'
+require_relative 'CardDealer'
+require_relative 'EnemyStarShip'
 
 module Deepspace
   class GameUniverse
@@ -7,8 +17,8 @@ module Deepspace
     def initialize
       @currentStationIndex = -1
       @turns = 0
-      @gameState = new GameStateController
-      @dice = new Dice
+      @gameState = GameStateController.new
+      @dice = Dice.new
       @currentStation = nil
       @currentEnemy = nil
       @spaceStations = Array.new()
@@ -37,10 +47,10 @@ module Deepspace
       end
 
       if enemyWins
-        s = station.getSpeed
+        s = station.speed
         moves = @dice.spaceStationMoves(s)
 
-        if moves
+        if !moves
           damage = enemy.damage
           station.setPendingDamage(damage)
           combatResult = CombatResult::ENEMYWINS
@@ -53,13 +63,13 @@ module Deepspace
         station.setLoot(aloot)
         combatResult = CombatResult::STATIONWINS
       end
+      @gameState.next(@turns,@spaceStations.length)
       return combatResult
     end
 
     public
     def combat()
       result = CombatResult::NOCOMBAT
-      state = @gameState.state
       if state == GameState::BEFORECOMBAT || state == GameState::INIT
         result = combatGo(@currentStation,@currentEnemy)
       end
@@ -67,37 +77,37 @@ module Deepspace
     end
 
     def discardHangar
-      if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+      if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
         @currentStation.discardHangar()
       end
     end
 
     def discardShieldBooster(i)
-      if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+      if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
         @currentStation.discardShieldBooster(i)
       end
     end
 
     def discardShieldBoosterInHangar(i)
-      if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+      if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
         @currentStation.discardShieldBoorterInHangar(i)
       end
     end
 
     def discardWeapon(i)
-        if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+        if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
           @currentStation.discardWeapon(i)
         end
     end
 
     def discardWeaponInHangar(i)
-        if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+        if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
           @currentStation.discardWeaponInHangar(i)
         end
     end
 
     def state
-        @state
+      @gameState.state
     end
 
     def getUIversion
@@ -105,59 +115,56 @@ module Deepspace
     end
 
     def haveAWinner
-      return (@currentStation.getNMedals() == WIN)
+      return (@currentStation.nMedals >= @@WIN)
     end
 
     def init(names)
-        state = @gameState.state
-        dice = Dice.new()
-        	if(state == GameState::CANNOTPLAY)
-        		dealer = CardDealer.instance
-        		names.each do |n|
-        		    supplies = dealer.nextSuppliesPackage()
-        		    station = SpaceStation.new(n,supplies)
-        		    @spaceStations.push(station)
+        if(state == GameState::CANNOTPLAY)
+          dealer = CardDealer.instance
+          names.each do |n|
+              supplies = dealer.nextSuppliesPackage()
+              station = SpaceStation.new(n,supplies)
+              @spaceStations.push(station)
 
-        		    nh = dice.initWithNHangars()
-        		    nw = dice.initWithNWeapons()
-        		    ns = dice.initWithNShields()
+              nh = @dice.initWithNHangars
+              nw = @dice.initWithNWeapons
+              ns = @dice.initWithNShields
 
-        		    lo = Loot.new(0,nw,ns,nh,0)
-        		    station.setLoot(lo)
-        		end
-        		@currentStationIndex = dice.whoStars(names.length())
-        		@currentStation = get(@currentStationIndex)
-        		@currentEnemy = dealer.nextEnemy()
+              lo = Loot.new(0,nw,ns,nh,0)
+              station.setLoot(lo)
+          end
+          @currentStationIndex = @dice.whoStars(names.length)
+          @currentStation = @spaceStations[@currentStationIndex]
+          @currentEnemy = dealer.nextEnemy
 
-        		@gameState.next(@turns,spaceStations.length())
-        	end
+          @gameState.next(@turns,@spaceStations.length)
+        end
     end
 
     def mountShieldBooster(i)
-        if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+        if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
           @currentStation.mountShieldBooster(i)
         end
     end
 
     def mountWeapon(i)
-        if(@gameState.state == GameState::INIT || @gameState.state == GameState::AFTERCOMBAT )
+        if(state == GameState::INIT || state == GameState::AFTERCOMBAT )
           @currentStation.mountWeapon(i)
         end
     end
 
     def nextTurn
       turn = false
-      state = @gameState.state
       if state == GameState::AFTERCOMBAT
         stationState = @currentStation.validState
         if stationState
-          @currentStationIndex = (@currentStationIndex+1)%@spaceStations.size()
+          @currentStationIndex = (@currentStationIndex+1)%@spaceStations.length
           @turns+=1
-          @currentStation = @spaceStations.at(@currentStationIndex)
+          @currentStation = @spaceStations[@currentStationIndex]
           @currentStation.cleanUpMountedItems
-          CardDealer dealer = CardDealer.instance
+          dealer = CardDealer.instance
           @currentEnemy = dealer.nextEnemy
-          @gameState.next(@turns,@spaceStations)
+          @gameState.next(@turns,@spaceStations.length)
           turn = true
         end
       end

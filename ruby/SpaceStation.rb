@@ -1,12 +1,12 @@
 #encoding: utf-8
-require_relative "SpaceStationToUI"
-require_relative "Hangar"
-require_relative "Damage"
-require_relative "Weapon"
-require_relative "WeaponType"
-require_relative "Loot"
-require_relative "ShieldBooster"
-require_relative "SuppliesPackage"
+require_relative 'SpaceStationToUI'
+require_relative 'Hangar'
+require_relative 'Damage'
+require_relative 'Weapon'
+require_relative 'WeaponType'
+require_relative 'Loot'
+require_relative 'ShieldBooster'
+require_relative 'SuppliesPackage'
 require_relative 'CardDealer'
 module Deepspace
   class SpaceStation
@@ -15,9 +15,9 @@ module Deepspace
 
     def initialize(n, supplies)
       @name=n
-      @ammoPower=0
-      @fuelUnits=0
-      @shieldPower=0
+      @ammoPower=0.0
+      @fuelUnits=0.0
+      @shieldPower=0.0
       @nMedals=0
       @weapons=Array.new()
       @shieldBoosters=Array.new()
@@ -84,15 +84,15 @@ module Deepspace
       @shieldPower
     end
 
-    def getSpeed
-      speed=0
+    def speed
+      s=0
       if(@@MAXFUEL!=0)
-        speed=@fuelUnits.to_f/@@MAXFUEL
+        s=@fuelUnits.to_f/@@MAXFUEL
       else
         raise "Division entre 0, MAXFUEL no puede ser 0"
       end
 
-      return speed
+      return s
     end
 
     def getUIversion
@@ -100,8 +100,8 @@ module Deepspace
     end
 
     def mountShieldBooster(i)
-      if(i>=0 && i<@hangar.shieldBoosters.length)
-        if(@hangar != nil)
+      if(@hangar != nil)
+        if(i>=0 && i<@hangar.weapons.length)
           s=@hangar.removeShieldBooster(i)
           if(s != nil)
             @shieldBoosters.push(s)
@@ -111,8 +111,8 @@ module Deepspace
     end
 
     def mountWeapon(i)
-      if(i>=0 && i<@hangar.weapons.length)
-        if(@hangar != nil)
+      if(@hangar != nil)
+        if(i>=0 && i<@hangar.weapons.length)
           w=@hangar.removeWeapon(i)
           if(w != nil)
             @weapons.push(w)
@@ -122,8 +122,8 @@ module Deepspace
     end
 
     def move
-      @fuelUnits-=@fuelUnits*getSpeed
-      if (fuelUnits<0)
+      @fuelUnits-=@fuelUnits*speed
+      if (fuelUnits<=0)
         @fuelUnits = 0
       end
     end
@@ -253,25 +253,26 @@ module Deepspace
 
     def protection
       factor=1
-      shieldBoosters.each do |s|
+      @shieldBoosters.each do |s|
         factor*=s.useIt
       end
-      return shieldPower*factor
+      return @shieldPower*factor
     end
 
     def fire
       factor=1.0
-      weapons.each do |w|
+      @weapons.each do |w|
         factor*=w.useIt
       end
-      return ammoPower*factor
+      return @ammoPower*factor
     end
     private
     def assignFuelValue(f)
       if(f <= @@MAXFUEL)
-        fuelUnits=f
+        @fuelUnits=f
       else
-        fuelUnits=@@MAXFUEL
+        @fuelUnits=@@MAXFUEL
+        @fuelUnits=@@MAXFUEL
       end
     end
 
