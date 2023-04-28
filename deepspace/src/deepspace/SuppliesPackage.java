@@ -14,8 +14,7 @@ public class SuppliesPackage {
     
     SuppliesPackage(SuppliesPackage s){
         this(s.ammoPower, s.fuelUnits, s.shieldPower);
-        
- 
+
     }
     
     public float getAmmoPower(){

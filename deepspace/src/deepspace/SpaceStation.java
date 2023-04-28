@@ -2,7 +2,7 @@ package deepspace;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SpaceStation {
+public class SpaceStation implements SpaceFighter {
     private static final int MAXFUEL = 100;
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f;
     private float ammoPower;
@@ -40,6 +40,10 @@ public class SpaceStation {
         shieldBoosters = new ArrayList<ShieldBooster>();
         hangar= null;
         pendingDamage=null;
+    }
+
+    public SpaceStation(SpaceStation station){
+
     }
     
     public void cleanUpMountedItems(){

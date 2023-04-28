@@ -1,7 +1,7 @@
 
 package deepspace;
 
-public class ShieldBooster {
+public class ShieldBooster implements CombatElement{
     private String name;
     private float boost;
     private int uses;
