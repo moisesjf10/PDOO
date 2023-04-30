@@ -36,7 +36,9 @@ public:
             exit(-1);
         }
 
-        coste_solucion=numeric_limits<double>::max();
+        pair<vector<int>,double> greedy = pvcGreedy();
+        coste_solucion=greedy.second;
+        recorrido=greedy.first;
     }
 
     double getCosteSolucion(){
@@ -85,14 +87,10 @@ private:
         }
     }
 
-    //Devuelve una cota
-    double pvcGreedy(){
-        vector<int> r;
-        r.push_back(0);
+    pair<vector<int>,double> pvcGreedy(const vector<int> &visitadas, const vector<int> &sin_visitar){
+        vector<int> r(visitadas);
 
-        int n=costes.size();
-        vector<int> aux;
-        for(int i=1; i<n; ++i) aux.push_back(i);
+        vector<int> aux(sin_visitar);
 
         vector<int>::iterator it = aux.begin();
         vector<int>::iterator it_min;
@@ -115,13 +113,111 @@ private:
         }
         c+=costes.at(0).at(*(r.end() - 1));
 
-        return c;
+        return {r,c};
     }
 
+    pair<vector<int>,double> pvcGreedy(){
+        vector<int> visitadas;
+        visitadas.push_back(0);
+        vector<int> sin_visitar;
+        int n=costes.size();
+        for(int i=1; i<n ; i++) sin_visitar.push_back(i);
+
+        return pvcGreedy(visitadas,sin_visitar);
+    }
 
 
 };
 
+class pvcBranchBound{
+private:
+    vector<vector<double>> costes;
+    vector<int> recorrido;
+    double coste_solucion;
+    // ¿lista de nodos a expandir? que hay que ordenar usando una estimacion de cual es el mejor
+
+
+public:
+    pvcBranchBound(char *archivo){
+        costes.clear();
+        recorrido.clear();
+
+        ifstream entrada(archivo);
+        if (entrada.is_open()) {
+            int n;
+            entrada >> n;
+            for(int i=0; i<n; i++){
+                vector<double> aux;
+                for(int j=0; j<n; j++){
+                    double c;
+                    entrada >> c ;
+                    aux.push_back(c);
+                }
+                costes.push_back(aux);
+            }
+            entrada.close();
+        }else {
+            cout << "ERROR: Fichero no encontrado" << endl;
+            exit(-1);
+        }
+
+        pair<vector<int>,double> greedy = pvcGreedy();
+        coste_solucion=greedy.second;
+        recorrido=greedy.first;
+
+    }
+
+
+
+
+private:
+    void pvcbb(const vector<int> &ciudades_visitadas, const vector<int> &ciudades_sinvisitar, double coste){
+
+
+    }
+
+
+
+    pair<vector<int>,double> pvcGreedy(const vector<int> &visitadas, const vector<int> &sin_visitar){
+        vector<int> r(visitadas);
+
+        vector<int> aux(sin_visitar);
+
+        vector<int>::iterator it = aux.begin();
+        vector<int>::iterator it_min;
+
+        double c=0;
+        while(!aux.empty()) {
+            double min = costes.at(*it).at(*(r.end() - 1));
+            it_min = it;
+            for (it = aux.begin() + 1; it != aux.end(); ++it) {
+                double otro = costes.at(*it).at(*(r.end() - 1));
+                if (min > otro) {
+                    min = otro;
+                    it_min = it;
+                }
+            }
+            c += min;
+            r.push_back(*it_min);
+            aux.erase(it_min);
+            it = aux.begin();
+        }
+        c+=costes.at(0).at(*(r.end() - 1));
+
+        return {r,c};
+    }
+
+    pair<vector<int>,double> pvcGreedy(){
+        vector<int> visitadas;
+        visitadas.push_back(0);
+        vector<int> sin_visitar;
+        int n=costes.size();
+        for(int i=1; i<n ; i++) sin_visitar.push_back(i);
+
+        return pvcGreedy(visitadas,sin_visitar);
+    }
+
+};
 
 int main(int argc, char* argv[]){
 
