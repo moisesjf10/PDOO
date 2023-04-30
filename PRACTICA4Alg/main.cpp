@@ -74,14 +74,23 @@ private:
         }
         else{
             vector<int> aux_ciudades_visitadas(ciudades_visitadas);
-            vector<int>  aux_ciudades_sinvisitar;
             aux_ciudades_visitadas.push_back(*(ciudades_sinvisitar.begin()));
-            for (int i = 0; i < (int) ciudades_sinvisitar.size(); i++) {
+            vector<int>  aux_ciudades_sinvisitar;
+            int n=ciudades_sinvisitar.size();
+            for(int i=1; i<n; i++){
+                aux_ciudades_sinvisitar.push_back(ciudades_sinvisitar.at(i));
+            }
+            int j=0;
+            for(int i=0; i<n; i++){
                 aux_ciudades_visitadas.pop_back();
                 aux_ciudades_visitadas.push_back(ciudades_sinvisitar.at(i));
                 double coste_aux = coste + costes.at(*(aux_ciudades_visitadas.end()-1)).at(*(aux_ciudades_visitadas.end()-2));
-                aux_ciudades_sinvisitar = ciudades_sinvisitar;
-                aux_ciudades_sinvisitar.erase(aux_ciudades_sinvisitar.begin()+i);
+                if(!aux_ciudades_sinvisitar.empty()){
+                    if(aux_ciudades_sinvisitar.at(j) == ciudades_sinvisitar.at(i)){
+                        aux_ciudades_sinvisitar.at(j) = ciudades_sinvisitar.at(i-1);
+                        j++;
+                    }
+                }
                 pvcbt(aux_ciudades_visitadas, aux_ciudades_sinvisitar,coste_aux);
             }
         }
