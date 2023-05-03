@@ -165,7 +165,8 @@ public class SpaceStation implements SpaceFighter {
             fuelUnits = 0;
         }
     }
-    
+
+    @Override
     public float protection(){
         float factor = 1;
         for(ShieldBooster s: shieldBoosters){
@@ -173,6 +174,7 @@ public class SpaceStation implements SpaceFighter {
         }
         return shieldPower*factor;
     }
+
     
     public float fire(){
         float factor = 1;
@@ -195,7 +197,9 @@ public class SpaceStation implements SpaceFighter {
         }
         return resultado;
     }
-    
+
+
+
     public ShotResult receiveShot(float shot){
         float myProtection = protection();
         ShotResult resultado = ShotResult.DONOTRESIST;
@@ -225,7 +229,7 @@ public class SpaceStation implements SpaceFighter {
         
     }
     
-    public void setLoot(Loot loot){
+    public Transformation setLoot(Loot loot){
         CardDealer dealer = CardDealer.getInstance();
         int h = loot.getNHangars();
         if (h>0){

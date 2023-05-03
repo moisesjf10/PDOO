@@ -7,6 +7,9 @@ public class Loot {
     private int nShields;
     private int nHangars;
     private int nMedals;
+
+    private boolean getEfficient;
+    private boolean spaceCity;
     
     Loot (int nSupplies, int nWeapons, int nShields, int nHangars, int nMedals ){
         this.nSupplies = nSupplies;
