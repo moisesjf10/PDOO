@@ -7,28 +7,28 @@ public class SpaceStation implements SpaceFighter {
     private static final float SHIELDLOSSPERUNITSHOT = 0.1f;
     private float ammoPower;
     private float fuelUnits ;
-    private String name; 
+    private String name;
     private int nMedals;
     private float shieldPower;
     private Damage pendingDamage;
     private ArrayList<Weapon> weapons;
     private ArrayList<ShieldBooster> shieldBoosters;
     private Hangar hangar;
-    
+
     private void assingFuelValue(float f){
         if (f < MAXFUEL) {
             fuelUnits = f;
         }else fuelUnits=MAXFUEL;
     }
-    
+
     private void cleanPendingDamage(){
         if(pendingDamage!=null){
             if(pendingDamage.hasNoEffect())
                 pendingDamage = null;
         }
-       
+
     }
-    
+
     SpaceStation(String n, SuppliesPackage supplies){
         name = n;
         ammoPower = 0;
@@ -43,9 +43,23 @@ public class SpaceStation implements SpaceFighter {
     }
 
     public SpaceStation(SpaceStation station){
+        this(station.name, new SuppliesPackage(station.ammoPower,station.fuelUnits,station.shieldPower));
+        nMedals = station.nMedals;
 
+        if(station.pendingDamage != null){
+            pendingDamage = station.pendingDamage.copy();
+        }
+        if(station.weapons != null){
+            weapons = new ArrayList<>(station.weapons);
+        }
+        if(station.shieldBoosters != null){
+            shieldBoosters = new ArrayList<>(station.shieldBoosters);
+        }
+        if(station.hangar != null){
+            hangar = new Hangar(station.hangar);
+        }
     }
-    
+
     public void cleanUpMountedItems(){
         Iterator<Weapon> i = weapons.iterator();
         while(i.hasNext()){
@@ -60,11 +74,11 @@ public class SpaceStation implements SpaceFighter {
             }
         }
     }
-            
+
     public void discardHangar(){
-       hangar = null;
+        hangar = null;
     }
-          
+
     public void discardShieldBooster(int i){
         int size = shieldBoosters.size();
         if (i>= 0 && i < size){
@@ -95,7 +109,7 @@ public class SpaceStation implements SpaceFighter {
             hangar.removeWeapon(i);
         }
     }
-    
+
     public float getAmmoPower(){
         return ammoPower;
     }
@@ -135,7 +149,7 @@ public class SpaceStation implements SpaceFighter {
     public ArrayList<Weapon> getWeapons(){
         return weapons;
     }
-    
+
     public void mountShieldBooster(int i){
         if (hangar != null){
             if(i >= 0 && i < hangar.getShieldBoosters().size()){
@@ -153,12 +167,12 @@ public class SpaceStation implements SpaceFighter {
                 if (w != null){
                     weapons.add(w);
                 }
-               
-            }        
+
+            }
         }
 
-    }   
-    
+    }
+
     public void move(){
         fuelUnits-=fuelUnits*getSpeed();
         if (fuelUnits<0){
@@ -175,7 +189,7 @@ public class SpaceStation implements SpaceFighter {
         return shieldPower*factor;
     }
 
-
+    @Override
     public float fire(){
         float factor = 1;
         for(Weapon w: weapons){
@@ -183,23 +197,23 @@ public class SpaceStation implements SpaceFighter {
         }
         return ammoPower*factor;
     }
-    
+
     public void receiveHangar(Hangar h){
         if (hangar == null)
             hangar = h;
 
     }
-    
+
     public boolean receiveShieldBooster(ShieldBooster s){
         boolean resultado = false;
         if (hangar != null){
-           resultado = hangar.addShieldBooster(s) ;
+            resultado = hangar.addShieldBooster(s) ;
         }
         return resultado;
     }
 
 
-
+    @Override
     public ShotResult receiveShot(float shot){
         float myProtection = protection();
         ShotResult resultado = ShotResult.DONOTRESIST;
@@ -212,23 +226,23 @@ public class SpaceStation implements SpaceFighter {
         }
         return resultado;
     }
-    
+
     public void receiveSupplies(SuppliesPackage s){
         ammoPower += s.getAmmoPower();
         assingFuelValue(fuelUnits+s.getFuelUnits());
         shieldPower += s.getShieldPower();
     }
-    
+
     public boolean receiveWeapon(Weapon w){
         boolean resultado = false;
         if(hangar != null){
             resultado = hangar.addWeapon(w);
-            
+
         }
         return resultado;
-        
+
     }
-    
+
     public Transformation setLoot(Loot loot){
         CardDealer dealer = CardDealer.getInstance();
         int h = loot.getNHangars();
@@ -252,12 +266,20 @@ public class SpaceStation implements SpaceFighter {
             receiveShieldBooster(sh);
         }
         nMedals += loot.getNMedals();
+
+        if(loot.getEfficient()){
+            return Transformation.GETEFFICIENT;
+        }else if(loot.spaceCity()){
+            return Transformation.SPACECITY;
+        }else{
+            return Transformation.NOTRANSFORM;
+        }
     }
-    
+
     public void setPendingDamage(Damage d){
         if(d!=null)
             pendingDamage=d.adjust(weapons, shieldBoosters);
-        
+
     }
     public boolean validState(){
         boolean resultado = false;
@@ -266,9 +288,9 @@ public class SpaceStation implements SpaceFighter {
         }
         return resultado;
     }
-    
+
     public String toString (){
-        String salida="[SpaceStation] -> ammoPower: "+ ammoPower + 
+        String salida="[SpaceStation] -> ammoPower: "+ ammoPower +
                 ", fuelUnits: "+ fuelUnits +
                 ", name: "+ name +
                 ", nMedals: "+ nMedals +
@@ -279,6 +301,6 @@ public class SpaceStation implements SpaceFighter {
                 ", hangar: "+ hangar.toString();
         return salida;
     }
-    
-    
+
+
 }
