@@ -11,7 +11,6 @@ public class Dice {
     private Random generator;
     
     Dice (){
-        
         NHANGARSPROB=0.25f;
         NSHIELDSPROB=0.25f;
         NWEAPONSPROB=0.33f;
@@ -56,8 +55,8 @@ public class Dice {
         return (generator.nextFloat() <= speed );
     }
     
-    public boolean extraEfficiency (){
-
+    public boolean extraEfficiency(){
+        return ((generator.nextFloat() <= EXTRAEFFICIENCYPROB)? true:false);
     }
     
     

@@ -11,12 +11,14 @@ public class Loot {
     private boolean getEfficient;
     private boolean spaceCity;
     
-    Loot (int nSupplies, int nWeapons, int nShields, int nHangars, int nMedals ){
+    Loot (int nSupplies, int nWeapons, int nShields, int nHangars, int nMedals, boolean ef, boolean city){
         this.nSupplies = nSupplies;
         this.nWeapons = nWeapons;
         this.nShields = nShields;
         this.nHangars = nHangars;
         this.nMedals = nMedals;
+        this.getEfficient=ef;
+        this.spaceCity=city;
     }
     
     public int getNSupplies(){
@@ -37,7 +39,15 @@ public class Loot {
     
     public int getNMedals(){
         return nMedals;
-    } 
+    }
+
+    public boolean getEfficient(){
+        return getEfficient;
+    }
+
+    public boolean spaceCity(){
+        return spaceCity;
+    }
     
     @Override
     public String toString(){

@@ -175,7 +175,7 @@ public class SpaceStation implements SpaceFighter {
         return shieldPower*factor;
     }
 
-    
+
     public float fire(){
         float factor = 1;
         for(Weapon w: weapons){
