@@ -27,6 +27,7 @@ class DamageToUI
     if (nWeapons == -1) then
       out += "[" + @weapons.join(", ") + "]"
     else
+    
       out += @nWeapons.to_s
     end
     return out
