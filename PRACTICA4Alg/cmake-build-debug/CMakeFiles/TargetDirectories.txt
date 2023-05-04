@@ -1,3 +1,0 @@
-/home/moises/CLionProjects/PRACTICA4Alg/cmake-build-debug/CMakeFiles/PRACTICA4Alg.dir
-/home/moises/CLionProjects/PRACTICA4Alg/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/moises/CLionProjects/PRACTICA4Alg/cmake-build-debug/CMakeFiles/rebuild_cache.dir

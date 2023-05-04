@@ -101,7 +101,7 @@ module Deepspace
 
     def mountShieldBooster(i)
       if(@hangar != nil)
-        if(i>=0 && i<@hangar.weapons.length)
+        if(i>=0 && i<@hangar.shieldBoosters.length)
           s=@hangar.removeShieldBooster(i)
           if(s != nil)
             @shieldBoosters.push(s)
