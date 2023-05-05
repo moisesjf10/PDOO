@@ -59,7 +59,9 @@ public class Loot {
                 ", nWeapons: "+ nWeapons +
                 ", nShields: "+ nShields +
                 ", nHangars: "+ nHangars +
-                ", nMedals; "+ nMedals;
+                ", nMedals: "+ nMedals +
+                ", getEfficient: " + getEfficient +
+                ", spaceCity: " + spaceCity ;
         return salida;
     }
     
