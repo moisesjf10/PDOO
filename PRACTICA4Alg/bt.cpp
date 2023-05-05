@@ -10,8 +10,12 @@ private:
     vector<vector<double>> costes; //matriz de costes
     vector<int> recorrido;         //solucion
     double coste_solucion;
-    int nodos_creados;
     double minimo; //arista minima del grafo
+    //Consideramos nodos creados, a todos aquellos a los que se les calcula el coste.
+    int nodos_creados;
+    //Consideramos llamadas a cota, todos aquellos nodos a los que se les aplica la función de cota.
+    int llamadas_a_cota;
+    
 
 
 public:
@@ -54,6 +58,10 @@ public:
     int getNodoscreados(){
         return nodos_creados;
     }
+    
+    int getLlamadasCota(){
+    	return llamadas_a_cota;
+    }
 
     double valor(int i, int j){
         return costes.at(i).at(j);
@@ -64,6 +72,7 @@ public:
         coste_solucion=greedy.second;
         recorrido=greedy.first;
         nodos_creados=0;
+        llamadas_a_cota=0;
     }
 
     //recibe la función de cota a usar
@@ -236,7 +245,7 @@ private:
 
                 //Ciudades sin visitar
 
-
+				nodos_creados++;
                 if(coste_aux < coste_solucion){
                     if(!aux_ciudades_sinvisitar.empty()){
                         if(i != 0) {
@@ -248,8 +257,8 @@ private:
                     }else{
                         pvcbt(aux_ciudades_visitadas, aux_ciudades_sinvisitar,coste_aux,cota);
                     }
+                    llamadas_a_cota++;
                     if((this->*cota)(aux_ciudades_visitadas,aux_ciudades_sinvisitar, coste_aux)){
-                        nodos_creados++;
                         pvcbt(aux_ciudades_visitadas, aux_ciudades_sinvisitar,coste_aux,cota);
                     }
                 }
@@ -345,7 +354,8 @@ int main(int argc, char **argv){
     salidaNODOS.open("nodosCOTA1.dat",fstream::app);
     salidaNODOS << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
     salidaNODOS.close();
-    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
+    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
+    cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
     prueba.reseteo();
 
@@ -370,9 +380,10 @@ int main(int argc, char **argv){
     }
     ofstream salidaNODOS2;
     salidaNODOS2.open("nodosCOTA2.dat",fstream::app);
-    salidaNODOS2 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
+    salidaNODOS2 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
     salidaNODOS2.close();
     cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
+    cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
     prueba.reseteo();
 
@@ -398,9 +409,10 @@ int main(int argc, char **argv){
 
     ofstream salidaNODOS3;
     salidaNODOS3.open("nodosCOTA3.dat",fstream::app);
-    salidaNODOS3 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
+    salidaNODOS3 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
     salidaNODOS3.close();
     cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
+    cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
     prueba.reseteo();
 
@@ -426,9 +438,10 @@ int main(int argc, char **argv){
 
     ofstream salidaNODOS4;
     salidaNODOS4.open("nodosCOTA4.dat",fstream::app);
-    salidaNODOS4 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
+    salidaNODOS4 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
     salidaNODOS4.close();
     cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
+    cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
 
 
