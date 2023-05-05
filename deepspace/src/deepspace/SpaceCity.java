@@ -14,7 +14,8 @@ public class SpaceCity extends SpaceStation{
     public ArrayList<SpaceStation> getCollaborators(){
         return collaborators;
     }
-
+    
+    @Override
     public float fire(){
         float fire = super.fire();
         for(SpaceStation s : collaborators ){
@@ -22,7 +23,8 @@ public class SpaceCity extends SpaceStation{
         }
         return fire;
     }
-
+       
+    @Override
     public float protection(){
         float protection = super.protection();
         for( SpaceStation s: collaborators){
@@ -30,7 +32,8 @@ public class SpaceCity extends SpaceStation{
         }
         return protection;
     }
-
+    
+    @Override
     public Transformation setLoot(Loot loot){
         super.setLoot(loot);
         return(Transformation.NOTRANSFORM);

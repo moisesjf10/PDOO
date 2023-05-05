@@ -69,7 +69,11 @@ module Deepspace
 		end
 
 		def extraEfficiency()
-
+			bool = false
+			if @generator.rand() <= @EXTRAEFFICIENCYPROB
+				bool = true
+			end
+			return bool
 		end
 
 	end
