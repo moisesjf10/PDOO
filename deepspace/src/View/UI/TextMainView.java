@@ -376,7 +376,6 @@ public class TextMainView implements DeepSpaceView {
   public void conversionMessage() {
     showMessageln("Has GANADO el combate. \nAdemás te has CONVERTIDO. \nDisfruta de tu botín");
   }
-
   @Override
   public void noCombatMessage() {
     showMessageln("No puedes combatir en este momento");

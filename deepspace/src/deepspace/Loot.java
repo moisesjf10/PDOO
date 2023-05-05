@@ -10,7 +10,7 @@ public class Loot {
 
     private boolean getEfficient;
     private boolean spaceCity;
-    
+
     Loot (int nSupplies, int nWeapons, int nShields, int nHangars, int nMedals, boolean ef, boolean city){
         this.nSupplies = nSupplies;
         this.nWeapons = nWeapons;
@@ -19,6 +19,10 @@ public class Loot {
         this.nMedals = nMedals;
         this.getEfficient=ef;
         this.spaceCity=city;
+    }
+
+    Loot(int nSup, int nWeap, int nSh, int nHan, int nMed){
+        this(nSup,nWeap,nSh,nHan,nMed,false, false);
     }
     
     public int getNSupplies(){

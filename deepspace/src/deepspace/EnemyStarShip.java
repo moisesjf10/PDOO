@@ -1,7 +1,7 @@
 package deepspace;
 
 
-class EnemyStarShip {
+class EnemyStarShip implements SpaceFighter {
     private String name;
     private float ammoPower;
     private float shieldPower;
@@ -24,7 +24,8 @@ class EnemyStarShip {
     EnemyToUI getUIversion(){
         return (new EnemyToUI(this));
     }
-    
+
+    @Override
     public float fire(){
         return ammoPower;
     }
@@ -48,11 +49,13 @@ class EnemyStarShip {
     public Damage getDamage(){
         return damage;
     }
-    
+
+    @Override
     public float protection(){
         return shieldPower;
     }
-    
+
+    @Override
     public ShotResult receiveShot(float shot){
         ShotResult resultado = ShotResult.RESIST;
         if (protection() < shot)

@@ -1,10 +1,10 @@
 package deepspace;
 
 public interface SpaceFighter {
-    public float fire();
+    float fire();
 
-    public float protection();
+    float protection();
 
-    public ShotResult receiveShot(float shot);
+    ShotResult receiveShot(float shot);
 
 }

@@ -10,6 +10,7 @@ public class GameUniverse{
     private EnemyStarShip currentEnemy;
     private SpaceStation currentStation;
     private ArrayList<SpaceStation> spaceStations;
+    private boolean haveSpaceCity;
     
     
     public GameUniverse(){
@@ -20,7 +21,28 @@ public class GameUniverse{
         currentEnemy=null;
         currentStation=null;
         spaceStations=new ArrayList<>();
-         
+        haveSpaceCity=false;
+    }
+
+    private void makeStationEfficient(){
+        if(dice.extraEfficiency()){
+            currentStation=new BetaPowerEfficientSpaceStation(currentStation);
+        }else{
+            currentStation=new PowerEfficientSpaceStation(currentStation);
+        }
+        spaceStations.set(currentStationIndex, currentStation);
+    }
+
+    private void createSpaceCity(){
+        if(!haveSpaceCity){
+            ArrayList<SpaceStation> rest = new ArrayList<>();
+            for( SpaceStation s: spaceStations){
+                if(s!=currentStation) rest.add(s);
+            }
+            currentStation=new SpaceCity(currentStation, rest);
+            spaceStations.set(currentStationIndex, currentStation);
+            haveSpaceCity=true;
+        }
     }
     
     CombatResult combat(SpaceStation station, EnemyStarShip enemy){
@@ -59,9 +81,19 @@ public class GameUniverse{
             }
         }else{
             Loot aLoot = enemy.getLoot();
-            station.setLoot(aLoot);
-            combatResult = CombatResult.STATIONWINS;
+            Transformation t= station.setLoot(aLoot);;
+
+            if(t == Transformation.GETEFFICIENT){
+                makeStationEfficient();
+                combatResult = CombatResult.STATIONWINSANDCONVERTS;
+            }else if(t == Transformation.SPACECITY){
+                createSpaceCity();
+                combatResult = CombatResult.STATIONWINSANDCONVERTS;
+            }else{
+                combatResult = CombatResult.STATIONWINS;
+            }
         }
+
         gameState.next(turns, spaceStations.size());
 
         return combatResult;
