@@ -340,7 +340,7 @@ int main(int argc, char **argv){
 
     ofstream salida;
     salida.open("tiemposCOTA1bb.dat",fstream::app);
-    salida << prueba.getRecorrido().size() << " " << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
+    salida << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
     salida.close();
 
     cout << "COTA 1" << endl;
@@ -352,9 +352,9 @@ int main(int argc, char **argv){
     }
     ofstream salidaNODOS;
     salidaNODOS.open("nodosCOTA1bb.dat",fstream::app);
-    salidaNODOS << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
+    salidaNODOS << prueba.getLlamadasCota() << endl;
     salidaNODOS.close();
-    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
+    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
     cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
     prueba.reseteo();
@@ -368,7 +368,7 @@ int main(int argc, char **argv){
 
     ofstream salida2;
     salida2.open("tiemposCOTA2bb.dat",fstream::app);
-    salida2 << prueba.getRecorrido().size() << " " << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
+    salida2 << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
     salida2.close();
 
     cout << "COTA 2" << endl;
@@ -380,9 +380,9 @@ int main(int argc, char **argv){
     }
     ofstream salidaNODOS2;
     salidaNODOS2.open("nodosCOTA2bb.dat",fstream::app);
-    salidaNODOS2 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << endl;
+    salidaNODOS2 << prueba.getLlamadasCota() << endl;
     salidaNODOS2.close();
-    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
+    cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
     cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
 
     prueba.reseteo();
@@ -396,7 +396,7 @@ int main(int argc, char **argv){
 
     ofstream salida3;
     salida3.open("tiemposCOTA3bb.dat",fstream::app);
-    salida3 << prueba.getRecorrido().size() << " " << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
+    salida3 << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
     salida3.close();
 
     cout << "COTA 3" << endl;
@@ -409,7 +409,7 @@ int main(int argc, char **argv){
 
     ofstream salidaNODOS3;
     salidaNODOS3.open("nodosCOTA3bb.dat",fstream::app);
-    salidaNODOS3 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
+    salidaNODOS3 << prueba.getLlamadasCota() << endl;
     salidaNODOS3.close();
     cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
     cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
@@ -425,7 +425,7 @@ int main(int argc, char **argv){
 
     ofstream salida4;
     salida4.open("tiemposCOTA4bb.dat",fstream::app);
-    salida4 << prueba.getRecorrido().size() << " " << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
+    salida4 << ((double) ((t_despues - t_antes)) / (CLOCKS_PER_SEC)) << endl;
     salida4.close();
 
     cout << "COTA 4" << endl;
@@ -438,7 +438,7 @@ int main(int argc, char **argv){
 
     ofstream salidaNODOS4;
     salidaNODOS4.open("nodosCOTA4bb.dat",fstream::app);
-    salidaNODOS4 << prueba.getRecorrido().size() << " " << prueba.getNodoscreados() << " " << prueba.getLlamadasCota() << endl;
+    salidaNODOS4  << prueba.getLlamadasCota() << endl;
     salidaNODOS4.close();
     cout << "Numero de nodos creados: " << prueba.getNodoscreados() << endl;
     cout << "Numero de llamadas a cota: " << prueba.getLlamadasCota() << endl;
