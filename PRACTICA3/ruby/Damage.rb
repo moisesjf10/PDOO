@@ -52,8 +52,8 @@ module Deepspace
           aux = w.clone
           waux = Array.new()
           @weapons.each do |n|
-            index = arrayContainsType(aux,n)
-            if index != -1
+            index = aux.index(n)
+            if index != nil
               waux.push(n)
               aux.delete_at(index)
             end
