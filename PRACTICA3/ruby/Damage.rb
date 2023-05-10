@@ -3,6 +3,8 @@ require_relative "DamageToUI"
 module Deepspace
   class Damage
       @@NO_USE = -1
+      private_class_method :new
+       
       def initialize(nw , ns, w)
         @nWeapons = nw
         @nShields = ns
