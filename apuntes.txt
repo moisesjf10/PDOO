@@ -1,0 +1,2 @@
+Si pide alguna modificación a la hora de recibir el botín, hacerlo en GameUniverse::combat
+Para cualquier metodo nuevo que requiera probabilidad, añadir un método a la clase Dice
