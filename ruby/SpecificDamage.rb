@@ -53,9 +53,9 @@ module Deepspace
     def hasNoEffect
       hasnoeffect=true
       if(@weapons!=nil)
-        hasnoeffect=@weapons.empty? && @nShields==0
+        hasnoeffect=@weapons.length && super
       else
-        hasnoeffect=@nShields==0
+        hasnoeffect=super
       end
       return hasnoeffect
     end

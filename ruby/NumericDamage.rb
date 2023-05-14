@@ -25,7 +25,7 @@ module Deepspace
     end
 
     def hasNoEffect
-      return (@nWeapons && super) == 0
+      return (@nWeapons + @nShields) == 0
     end
 
     def getUIversion
