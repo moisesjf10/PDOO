@@ -9,6 +9,10 @@ require_relative 'ShotResult'
 require_relative 'SpaceStation'
 require_relative 'CardDealer'
 require_relative 'EnemyStarShip'
+require_relative 'Transformation'
+require_relative 'PowerEfficientSpaceStation'
+require_relative 'BetaPowerEfficientSpaceStation'
+require_relative 'SpaceCity'
 
 module Deepspace
   class GameUniverse
@@ -22,7 +26,32 @@ module Deepspace
       @currentStation = nil
       @currentEnemy = nil
       @spaceStations = Array.new()
+      @haveSpaceCity = false
     end
+
+    def makeStationEfficient
+      if (@dice.extraEfficiency)
+        @currentStation = BetaPowerEfficientSpaceStation.new(@currentStation)
+      else
+        @currentStation = PowerEfficientSpaceStation.new(@currentStation)
+      end
+      @spaceStations[@currentStationIndex] = @currentStation
+    end
+
+    def createSpaceCity
+      if !@haveSpaceCity
+        rest = Array.new()
+        SpaceStation.each do |n|
+          if n != @currentStation
+            rest.push(n)
+          end
+        end
+        @currentStation = new SpaceCity(@currentStation,rest)
+        @spaceStations[@currentStationIndex] = @currentStation
+        @haveSpaceCity = true
+      end
+    end
+
 
     def combatGo(station, enemy)
       enemyWins = false
@@ -60,8 +89,15 @@ module Deepspace
         end
       else
         aloot = enemy.loot
-        station.setLoot(aloot)
-        combatResult = CombatResult::STATIONWINS
+        t = station.setLoot(aloot)
+        combatResult=CombatResult::STATIONWINS
+        if t == Transformation::GETEFFICIENT
+          makeStationEfficient
+          combatResult = CombatResult::STATIONWINSANDCONVERTS
+        elsif t == Transformation::SPACECITY
+          createSpaceCity
+          combatResult = CombatResult::STATIONWINSANDCONVERTS
+        end
       end
       @gameState.next(@turns,@spaceStations.length)
       return combatResult

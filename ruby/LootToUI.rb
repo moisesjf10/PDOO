@@ -13,7 +13,7 @@ class LootToUI
     @nShields=l.nShields
     @nHangars=l.nHangars
     @nMedals=l.nMedals
-    @efficient=l.efficient
+    @efficient=l.getEfficient
     @spaceCity=l.spaceCity
   end
 

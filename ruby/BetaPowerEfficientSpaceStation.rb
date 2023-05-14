@@ -1,3 +1,6 @@
+require_relative 'Dice'
+require_relative 'PowerEfficientSpaceStation'
+require_relative 'BetaPowerEfficientSpaceStationToUI'
 
 module Deepspace
   class BetaPowerEfficientSpaceStation < PowerEfficientSpaceStation

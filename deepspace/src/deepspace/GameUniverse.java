@@ -81,7 +81,7 @@ public class GameUniverse{
             }
         }else{
             Loot aLoot = enemy.getLoot();
-            Transformation t= station.setLoot(aLoot);;
+            Transformation t= station.setLoot(aLoot);
 
             if(t == Transformation.GETEFFICIENT){
                 makeStationEfficient();

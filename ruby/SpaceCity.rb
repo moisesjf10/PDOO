@@ -6,7 +6,7 @@ require_relative 'SpaceCityToUI'
 module Deepspace
   class SpaceCity < SpaceStation
     def initialize(base_, rest_)
-      super(base_)
+      copy(base_)
       @base=base_
       @collaborators=rest_
     end

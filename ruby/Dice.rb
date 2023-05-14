@@ -1,5 +1,7 @@
-module Deepspace
+#encondig:utf-8
 
+require_relative 'GameCharacter'
+module Deepspace
 	class Dice
 		def initialize
 			@NHANGARSPROB=0.25

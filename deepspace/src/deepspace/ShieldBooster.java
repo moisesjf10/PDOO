@@ -22,10 +22,11 @@ public class ShieldBooster implements CombatElement{
         return boost;
     }
     
+    @Override
     public int getUses(){
         return uses;
     }
-    
+    @Override
     public float useIt(){
         float aux;
         if (uses > MIN_USES){

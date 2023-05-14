@@ -26,6 +26,25 @@ module Deepspace
       receiveSupplies(supplies)
     end
 
+    def self.copy(station)
+      new(station.name, SuppliesPackage.new(station.ammoPower, station.fuelUnits, station.shieldPower))
+      @nMedals = station.nMedals
+
+      if station.weapons != nil
+        @weapons = station.weapons.clone
+      end
+      if station.shieldBoosters != nil
+        @shieldBoosters=station.shieldBoosters.clone
+      end
+      if station.hangar != nil
+        @hangar=station.hangar.clone
+      end
+      if station.pendingDamage != nil
+        @pendingDamage=station.pendingDamage.clone
+      end
+
+    end
+
     public
     def cleanUpMountedItems
       @weapons=@weapons.select { |w| w.uses > 0 }
@@ -233,6 +252,15 @@ module Deepspace
       end
 
       @nMedals+=loot.nMedals
+
+      transformation=Transformation::NOTRANSFORM
+      if(loot.getEfficient)
+        transformation=Transformation::GETEFFICIENT
+      elsif(loot.spaceCity)
+        transformation=Transformation::SPACECITY
+      end
+
+      return transformation
     end
 
     def receiveShot(shot)
