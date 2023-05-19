@@ -22,6 +22,7 @@ public class Weapon implements CombatElement{
         return type;
     }
     
+    @Override
     public int getUses(){
         return uses;
     }
@@ -30,6 +31,7 @@ public class Weapon implements CombatElement{
         return type.getPower();
     }
     
+    @Override
     public float useIt(){
         float result;
         if(uses>MIN_USES){
