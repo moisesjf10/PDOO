@@ -12,7 +12,8 @@ import deepspace.GameUniverse;
 import deepspace.GameUniverseToUI;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import deepspace.ShieldToUI;
+import deepspace.LootToUI;
 /**
  *
  * @author profe
@@ -138,5 +139,14 @@ public class Controller {
     
     public void discardHangar () {
         game.discardHangar();
+    }
+    
+    
+    public ShieldToUI dameEscudoPrueba(){
+        return game.dameEscudoPrueba().getUIversion();
+    }
+    
+    public LootToUI dameloot(){
+        return game.dameloot().getUIversion();
     }
 }

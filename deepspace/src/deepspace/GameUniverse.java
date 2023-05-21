@@ -214,4 +214,12 @@ public class GameUniverse{
     }
     
     
+    public ShieldBooster dameEscudoPrueba(){
+        return CardDealer.getInstance().nextShieldBooster(); 
+    }
+    
+    public Loot dameloot(){
+        return new Loot(0,0,0,0,0);
+    }
+    
 }

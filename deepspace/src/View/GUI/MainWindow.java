@@ -7,6 +7,8 @@ package View.GUI;
 import View.DeepSpaceView;
 import controller.Controller;
 import java.util.ArrayList;
+import deepspace.ShieldToUI;
+import deepspace.LootToUI;
 
 /**
  *
@@ -55,17 +57,25 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelPruebas = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,7 +120,13 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     @Override
     public void updateView(){
-
+        LootToUI l=Controller.getInstance().dameloot();
+        LootView vistal=new LootView();
+        vistal.setLoot(l);
+        panelPruebas.add(vistal);
+        repaint();
+        revalidate();
+        
     }
     @Override
     public void showView(){
@@ -148,5 +164,6 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel panelPruebas;
     // End of variables declaration//GEN-END:variables
 }

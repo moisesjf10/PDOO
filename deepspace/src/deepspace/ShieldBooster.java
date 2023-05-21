@@ -47,7 +47,7 @@ public class ShieldBooster implements CombatElement{
         return salida; 
     }
     
-    ShieldToUI getUIversion(){
+    public ShieldToUI getUIversion(){
         return (new ShieldToUI(this));
     }
 }
