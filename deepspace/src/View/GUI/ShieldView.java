@@ -27,8 +27,8 @@ public class ShieldView extends javax.swing.JPanel implements CombatElementView 
     }
     
     void setShield(ShieldToUI shield){
-        jLabel1.setText(Float.toString(shield.getBoost()));
-        jLabel3.setText(Integer.toString(shield.getUses()));
+        jLabel2.setText(Float.toString(shield.getBoost()));
+        jLabel4.setText(Integer.toString(shield.getUses()));
         revalidate();
         repaint();
     }
@@ -43,9 +43,10 @@ public class ShieldView extends javax.swing.JPanel implements CombatElementView 
 
         boostTitle = new javax.swing.JLabel();
         usestitle = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -56,33 +57,39 @@ public class ShieldView extends javax.swing.JPanel implements CombatElementView 
 
         usestitle.setText("Uses:");
 
+        jLabel2.setText("jLabel2");
+
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(boostTitle)
-                    .addComponent(usestitle))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(boostTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(usestitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boostTitle)
-                    .addComponent(jLabel1))
-                .addGap(26, 26, 26)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usestitle)
-                    .addComponent(jLabel3))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jLabel4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,8 +103,8 @@ public class ShieldView extends javax.swing.JPanel implements CombatElementView 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boostTitle;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel usestitle;
     // End of variables declaration//GEN-END:variables
 }

@@ -222,4 +222,21 @@ public class GameUniverse{
         return new Loot(0,0,0,0,0);
     }
     
+    public Hangar dameHangar(){
+        Hangar h=new Hangar(5);
+        h.addShieldBooster(new ShieldBooster("a",3,3));
+        h.addShieldBooster(new ShieldBooster("b",3,3));
+     
+        h.addWeapon(new Weapon("c",WeaponType.LASER,2));
+        h.addWeapon(new Weapon("d",WeaponType.MISSILE,2));
+        return h;
+    }
+    
+    public EnemyStarShip dameenemy(){
+        Loot l=new Loot(2,2,2,2,2);
+        Damage d=new NumericDamage(2,2);
+        EnemyStarShip enemy=new EnemyStarShip("malo",2,2,l,d);
+        return enemy;
+    }
+    
 }

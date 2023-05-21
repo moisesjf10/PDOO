@@ -44,8 +44,8 @@ public class LootView extends javax.swing.JPanel {
         shields = new javax.swing.JLabel();
         hangar = new javax.swing.JLabel();
         medals = new javax.swing.JLabel();
-        efficient = new javax.swing.JLabel();
-        spacecity = new javax.swing.JLabel();
+
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Tsupplies.setText("Supplies:");
 
@@ -57,6 +57,16 @@ public class LootView extends javax.swing.JPanel {
 
         Tmedals.setText("Medals:");
 
+        supplies.setText("sssss");
+
+        weapons.setText("wwwww");
+
+        shields.setText("ssssss");
+
+        hangar.setText("hhhhh");
+
+        medals.setText("mmmmm");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,39 +75,30 @@ public class LootView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(spacecity))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Tweapons)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                            .addComponent(weapons))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(Tsupplies)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(supplies)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(Tmedals)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(medals))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(Thangars)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(hangar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(Tshields)
-                            .addGap(44, 44, 44)
-                            .addComponent(shields)))
+                            .addComponent(Tsupplies))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(supplies, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(weapons)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(efficient)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(Tshields)
+                        .addGap(27, 27, 27)
+                        .addComponent(shields))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Thangars)
+                            .addComponent(Tmedals))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(medals)
+                            .addComponent(hangar))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Tsupplies)
                     .addComponent(supplies))
@@ -116,11 +117,7 @@ public class LootView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Tmedals)
-                    .addComponent(medals))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(efficient)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spacecity))
+                    .addComponent(medals)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,11 +128,9 @@ public class LootView extends javax.swing.JPanel {
     private javax.swing.JLabel Tshields;
     private javax.swing.JLabel Tsupplies;
     private javax.swing.JLabel Tweapons;
-    private javax.swing.JLabel efficient;
     private javax.swing.JLabel hangar;
     private javax.swing.JLabel medals;
     private javax.swing.JLabel shields;
-    private javax.swing.JLabel spacecity;
     private javax.swing.JLabel supplies;
     private javax.swing.JLabel weapons;
     // End of variables declaration//GEN-END:variables

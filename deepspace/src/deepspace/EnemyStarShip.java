@@ -1,7 +1,7 @@
 package deepspace;
 
 
-class EnemyStarShip implements SpaceFighter {
+public class EnemyStarShip implements SpaceFighter {
     private String name;
     private float ammoPower;
     private float shieldPower;
@@ -21,7 +21,7 @@ class EnemyStarShip implements SpaceFighter {
         this(e.name,e.ammoPower,e.shieldPower,e.loot,e.damage);
     }
     
-    EnemyToUI getUIversion(){
+    public EnemyToUI getUIversion(){
         return (new EnemyToUI(this));
     }
 

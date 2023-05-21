@@ -23,7 +23,7 @@ public class Hangar {
             addWeapon(w);
     }
     
-    HangarToUI getUIversion(){
+    public HangarToUI getUIversion(){
         return (new HangarToUI(this));
     }
     

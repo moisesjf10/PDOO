@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import deepspace.ShieldToUI;
 import deepspace.LootToUI;
+import deepspace.HangarToUI;
+import deepspace.EnemyToUI;
 /**
  *
  * @author profe
@@ -148,5 +150,13 @@ public class Controller {
     
     public LootToUI dameloot(){
         return game.dameloot().getUIversion();
+    }
+    
+    public HangarToUI dameHangar(){
+        return game.dameHangar().getUIversion();
+    }
+    
+    public EnemyToUI dameenemy(){
+        return game.dameenemy().getUIversion();
     }
 }
