@@ -222,21 +222,31 @@ public class GameUniverse{
         return new Loot(0,0,0,0,0);
     }
     
-    public Hangar dameHangar(){
-        Hangar h=new Hangar(5);
-        h.addShieldBooster(new ShieldBooster("a",3,3));
-        h.addShieldBooster(new ShieldBooster("b",3,3));
-     
-        h.addWeapon(new Weapon("c",WeaponType.LASER,2));
-        h.addWeapon(new Weapon("d",WeaponType.MISSILE,2));
-        return h;
-    }
-    
-    public EnemyStarShip dameenemy(){
-        Loot l=new Loot(2,2,2,2,2);
-        Damage d=new NumericDamage(2,2);
-        EnemyStarShip enemy=new EnemyStarShip("malo",2,2,l,d);
-        return enemy;
+    public SpaceStation dameEstacion(){
+        
+        SpaceStation s = new SpaceStation("Estacion",CardDealer.getInstance().nextSuppliesPackage());
+        Hangar h = CardDealer.getInstance().nextHangar();
+        h.addWeapon(CardDealer.getInstance().nextWeapon());
+        h.addWeapon(CardDealer.getInstance().nextWeapon());
+        h.addWeapon(CardDealer.getInstance().nextWeapon());
+        
+        h.addShieldBooster(CardDealer.getInstance().nextShieldBooster());
+        h.addShieldBooster(CardDealer.getInstance().nextShieldBooster());
+        h.addShieldBooster(CardDealer.getInstance().nextShieldBooster());
+        
+        s.receiveHangar(h);
+        
+        s.mountWeapon(0);
+        s.mountShieldBooster(0);
+        
+        NumericDamage damage = new NumericDamage(1,1);
+        
+        s.setPendingDamage(damage);
+        
+        System.out.println(s.toString());
+        
+        return s;
+        
     }
     
 }

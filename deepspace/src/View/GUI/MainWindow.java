@@ -9,8 +9,7 @@ import controller.Controller;
 import java.util.ArrayList;
 import deepspace.ShieldToUI;
 import deepspace.LootToUI;
-import deepspace.HangarToUI;
-import deepspace.EnemyToUI;
+import deepspace.SpaceStationToUI;
 
 /**
  *
@@ -68,16 +67,16 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(655, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,6 +113,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow().setVisible(true);
+                
             }
         });
 
@@ -122,9 +122,11 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     @Override
     public void updateView(){
-        EnemyToUI e=Controller.getInstance().dameenemy();
-        EnemyView vista=new EnemyView();
-        vista.setEnemy(e);
+        
+        SpaceStationToUI station = Controller.getInstance().dameEstacion();
+        SpaceStationView  vista = new SpaceStationView();
+        vista.setSpaceStation(station);
+        System.out.println(station.toString());
         panelPruebas.add(vista);
         repaint();
         revalidate();

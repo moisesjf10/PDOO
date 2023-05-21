@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import deepspace.ShieldToUI;
 import deepspace.LootToUI;
-import deepspace.HangarToUI;
-import deepspace.EnemyToUI;
+import deepspace.SpaceStationToUI;
+import deepspace.SuppliesPackage;
 /**
  *
  * @author profe
@@ -26,7 +26,7 @@ public class Controller {
     public static final int WEAPON = 0x1;
     public static final int SHIELD = 0x2;
     public static final int HANGAR = 0x4;
-    private GameUniverse game;
+    private GameUniverse game ;
     private DeepSpaceView view;
     
     private Controller () {}
@@ -151,12 +151,7 @@ public class Controller {
     public LootToUI dameloot(){
         return game.dameloot().getUIversion();
     }
-    
-    public HangarToUI dameHangar(){
-        return game.dameHangar().getUIversion();
-    }
-    
-    public EnemyToUI dameenemy(){
-        return game.dameenemy().getUIversion();
+    public SpaceStationToUI dameEstacion(){
+        return game.dameEstacion().getUIversion();
     }
 }

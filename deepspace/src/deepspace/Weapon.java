@@ -8,7 +8,7 @@ public class Weapon implements CombatElement{
     private static final float DEFAULT_POWER=1.0f;
     private static final float MIN_USES=0;
     
-    Weapon(String name, WeaponType type, int uses){
+    public Weapon(String name, WeaponType type, int uses){
         this.name=name;
         this.type=type;
         this.uses=uses;
@@ -42,7 +42,7 @@ public class Weapon implements CombatElement{
         return result;
     }
     
-    WeaponToUI getUIversion(){
+    public WeaponToUI getUIversion(){
         return (new WeaponToUI(this));
     }
             
