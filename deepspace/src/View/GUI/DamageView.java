@@ -21,7 +21,7 @@ public class DamageView extends javax.swing.JPanel {
     
     void setDamage(DamageToUI damage){
         if(damage == null){
-            
+            setVisible(false);
         }
         else{
             weapons.setText(damage.getWeaponInfo());
