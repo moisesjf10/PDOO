@@ -222,6 +222,16 @@ public class GameUniverse{
         return new Loot(0,0,0,0,0);
     }
     
+    public Hangar dameHangar(){
+        Hangar h=new Hangar(4);
+        h.addWeapon(CardDealer.getInstance().nextWeapon());
+        h.addWeapon(CardDealer.getInstance().nextWeapon());
+        h.addShieldBooster(CardDealer.getInstance().nextShieldBooster());
+        h.addShieldBooster(CardDealer.getInstance().nextShieldBooster());
+        
+        return h;
+    }
+    
     public SpaceStation dameEstacion(){
         
         SpaceStation s = new SpaceStation("Estacion",CardDealer.getInstance().nextSuppliesPackage());

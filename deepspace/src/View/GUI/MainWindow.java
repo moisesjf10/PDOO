@@ -6,6 +6,7 @@ package View.GUI;
 
 import View.DeepSpaceView;
 import controller.Controller;
+import deepspace.HangarToUI;
 import java.util.ArrayList;
 import deepspace.ShieldToUI;
 import deepspace.LootToUI;
@@ -67,16 +68,14 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 1493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 655, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,6 +129,14 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         panelPruebas.add(vista);
         repaint();
         revalidate();
+        
+        /*HangarToUI h = Controller.getInstance().dameHangar();
+        HangarView  vista = new HangarView();
+        vista.setHangar(h);
+        System.out.println(h.toString());
+        panelPruebas.add(vista);
+        repaint();
+        revalidate();*/
         
     }
     @Override

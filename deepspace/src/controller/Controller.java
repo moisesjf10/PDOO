@@ -16,6 +16,7 @@ import deepspace.ShieldToUI;
 import deepspace.LootToUI;
 import deepspace.SpaceStationToUI;
 import deepspace.SuppliesPackage;
+import deepspace.HangarToUI;
 /**
  *
  * @author profe
@@ -153,5 +154,9 @@ public class Controller {
     }
     public SpaceStationToUI dameEstacion(){
         return game.dameEstacion().getUIversion();
+    }
+    
+    public HangarToUI dameHangar(){
+        return game.dameHangar().getUIversion();
     }
 }
