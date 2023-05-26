@@ -248,8 +248,10 @@ public class GameUniverse{
         
         s.mountWeapon(0);
         s.mountShieldBooster(0);
-        
-        NumericDamage damage = new NumericDamage(1,1);
+        ArrayList<WeaponType> l=new ArrayList<>();
+        l.add(WeaponType.LASER);
+        l.add(WeaponType.MISSILE);
+        SpecificDamage damage = new SpecificDamage(l,1);
         
         s.setPendingDamage(damage);
         

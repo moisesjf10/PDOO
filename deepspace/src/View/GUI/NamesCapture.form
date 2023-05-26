@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -85,12 +85,12 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jugador 1:"/>
+        <Property name="text" type="java.lang.String" value="Player 1:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jugador 2:"/>
+        <Property name="text" type="java.lang.String" value="Player 2:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNombre1">
@@ -105,12 +105,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jugador 3:"/>
+        <Property name="text" type="java.lang.String" value="Player 3:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Jugador 4:"/>
+        <Property name="text" type="java.lang.String" value="Player 4:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNombre3">
@@ -125,7 +125,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBEmpezar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Empezar"/>
+        <Property name="text" type="java.lang.String" value="Start"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEmpezarActionPerformed"/>

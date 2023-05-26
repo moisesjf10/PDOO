@@ -42,25 +42,16 @@ public class WeaponView extends javax.swing.JPanel implements CombatElementView 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Type = new javax.swing.JLabel();
-        Power = new javax.swing.JLabel();
-        Uses = new javax.swing.JLabel();
         typeText = new javax.swing.JLabel();
         powerText = new javax.swing.JLabel();
         usesText = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        Type.setText("Type:");
-
-        Power.setText("Power:");
-        Power.addMouseListener(new java.awt.event.MouseAdapter() {
+        addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PowerMouseClicked(evt);
+                formMouseClicked(evt);
             }
         });
-
-        Uses.setText("Uses:");
 
         typeText.setText("jLabel1");
 
@@ -76,50 +67,34 @@ public class WeaponView extends javax.swing.JPanel implements CombatElementView 
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Uses, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(powerText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usesText, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(typeText))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Power)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(powerText)))
+                        .addComponent(usesText, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(typeText))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Type)
-                    .addComponent(typeText))
+                .addComponent(typeText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(powerText)
-                    .addComponent(Power))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Uses)
-                    .addComponent(usesText))
-                .addContainerGap())
+                    .addComponent(usesText, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PowerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PowerMouseClicked
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        selected = !selected;
-        setOpaque (selected);
+        selected=!selected;
+        setOpaque(selected);
         repaint();
-    }//GEN-LAST:event_PowerMouseClicked
+    }//GEN-LAST:event_formMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Power;
-    private javax.swing.JLabel Type;
-    private javax.swing.JLabel Uses;
     private javax.swing.JLabel powerText;
     private javax.swing.JLabel typeText;
     private javax.swing.JLabel usesText;

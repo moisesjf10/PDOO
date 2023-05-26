@@ -19,6 +19,9 @@ import deepspace.SpaceStationToUI;
 public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     private static MainWindow instance=null;
     private String appName;
+    
+    private SpaceStationView stationView;
+    private EnemyView enemyView;
 
     //hay mas datos miembro
     public static MainWindow getInstance () {
@@ -35,6 +38,10 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         //hay que hacer algo mas
         appName = "DeepSpace";
         setTitle(appName);
+        
+        stationView=new SpaceStationView();
+        enemyView=new EnemyView();
+        
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -59,84 +66,127 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPruebas = new javax.swing.JPanel();
+        SpaceStation = new javax.swing.JPanel();
+        enemy = new javax.swing.JPanel();
+        combatir = new javax.swing.JButton();
+        nextturn = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        SpaceStation.setBorder(javax.swing.BorderFactory.createTitledBorder("Station"));
+
+        javax.swing.GroupLayout SpaceStationLayout = new javax.swing.GroupLayout(SpaceStation);
+        SpaceStation.setLayout(SpaceStationLayout);
+        SpaceStationLayout.setHorizontalGroup(
+            SpaceStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        SpaceStationLayout.setVerticalGroup(
+            SpaceStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 549, Short.MAX_VALUE)
+        );
+
+        enemy.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy"));
+
+        javax.swing.GroupLayout enemyLayout = new javax.swing.GroupLayout(enemy);
+        enemy.setLayout(enemyLayout);
+        enemyLayout.setHorizontalGroup(
+            enemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 387, Short.MAX_VALUE)
+        );
+        enemyLayout.setVerticalGroup(
+            enemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 371, Short.MAX_VALUE)
+        );
+
+        combatir.setText("COMBAT");
+        combatir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combatirActionPerformed(evt);
+            }
+        });
+
+        nextturn.setText("Next Turn");
+        nextturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextturnActionPerformed(evt);
+            }
+        });
+
+        exit.setText("EXIT");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 1493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(SpaceStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(enemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(combatir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(nextturn)
+                        .addGap(126, 126, 126)
+                        .addComponent(exit)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SpaceStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(enemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(combatir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nextturn)
+                            .addComponent(exit))
+                        .addGap(72, 72, 72))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void combatirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combatirActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().combat();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_combatirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-                
-            }
-        });
+    private void nextturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextturnActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().nextTurn();
+        updateView();
+        revalidate();
+    }//GEN-LAST:event_nextturnActionPerformed
 
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        Controller.getInstance().finish(0);
+    }//GEN-LAST:event_exitActionPerformed
 
-    }
 
     @Override
     public void updateView(){
         
-        SpaceStationToUI station = Controller.getInstance().dameEstacion();
-        SpaceStationView  vista = new SpaceStationView();
-        vista.setSpaceStation(station);
-        System.out.println(station.toString());
-        panelPruebas.add(vista);
-        repaint();
-        revalidate();
-        
-        /*HangarToUI h = Controller.getInstance().dameHangar();
-        HangarView  vista = new HangarView();
-        vista.setHangar(h);
-        System.out.println(h.toString());
-        panelPruebas.add(vista);
-        repaint();
-        revalidate();*/
         
     }
     @Override
@@ -175,6 +225,10 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel panelPruebas;
+    private javax.swing.JPanel SpaceStation;
+    private javax.swing.JButton combatir;
+    private javax.swing.JPanel enemy;
+    private javax.swing.JButton exit;
+    private javax.swing.JButton nextturn;
     // End of variables declaration//GEN-END:variables
 }

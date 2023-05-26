@@ -53,9 +53,9 @@ public class NamesCapture extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Jugador 1:");
+        jLabel1.setText("Player 1:");
 
-        jLabel2.setText("Jugador 2:");
+        jLabel2.setText("Player 2:");
 
         jTextFieldNombre1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,9 +69,9 @@ public class NamesCapture extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Jugador 3:");
+        jLabel3.setText("Player 3:");
 
-        jLabel4.setText("Jugador 4:");
+        jLabel4.setText("Player 4:");
 
         jTextFieldNombre3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class NamesCapture extends javax.swing.JDialog {
             }
         });
 
-        jBEmpezar.setText("Empezar");
+        jBEmpezar.setText("Start");
         jBEmpezar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEmpezarActionPerformed(evt);
@@ -97,7 +97,7 @@ public class NamesCapture extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
