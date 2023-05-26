@@ -6,11 +6,9 @@ package View.GUI;
 
 import View.DeepSpaceView;
 import controller.Controller;
-import deepspace.HangarToUI;
 import java.util.ArrayList;
-import deepspace.ShieldToUI;
-import deepspace.LootToUI;
-import deepspace.SpaceStationToUI;
+import deepspace.GameState;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,7 +33,6 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
      */
     private MainWindow() {
         initComponents();
-        //hay que hacer algo mas
         appName = "DeepSpace";
         setTitle(appName);
         
@@ -66,37 +63,37 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SpaceStation = new javax.swing.JPanel();
-        enemy = new javax.swing.JPanel();
+        stationpanel = new javax.swing.JPanel();
+        enemypanel = new javax.swing.JPanel();
         combatir = new javax.swing.JButton();
         nextturn = new javax.swing.JButton();
         exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        SpaceStation.setBorder(javax.swing.BorderFactory.createTitledBorder("Station"));
+        stationpanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Station"));
 
-        javax.swing.GroupLayout SpaceStationLayout = new javax.swing.GroupLayout(SpaceStation);
-        SpaceStation.setLayout(SpaceStationLayout);
-        SpaceStationLayout.setHorizontalGroup(
-            SpaceStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout stationpanelLayout = new javax.swing.GroupLayout(stationpanel);
+        stationpanel.setLayout(stationpanelLayout);
+        stationpanelLayout.setHorizontalGroup(
+            stationpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 550, Short.MAX_VALUE)
         );
-        SpaceStationLayout.setVerticalGroup(
-            SpaceStationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        stationpanelLayout.setVerticalGroup(
+            stationpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 549, Short.MAX_VALUE)
         );
 
-        enemy.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy"));
+        enemypanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy"));
 
-        javax.swing.GroupLayout enemyLayout = new javax.swing.GroupLayout(enemy);
-        enemy.setLayout(enemyLayout);
-        enemyLayout.setHorizontalGroup(
-            enemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout enemypanelLayout = new javax.swing.GroupLayout(enemypanel);
+        enemypanel.setLayout(enemypanelLayout);
+        enemypanelLayout.setHorizontalGroup(
+            enemypanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 387, Short.MAX_VALUE)
         );
-        enemyLayout.setVerticalGroup(
-            enemyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        enemypanelLayout.setVerticalGroup(
+            enemypanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 371, Short.MAX_VALUE)
         );
 
@@ -127,11 +124,11 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(SpaceStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(enemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(enemypanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(combatir))
@@ -148,10 +145,10 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(SpaceStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(enemy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(enemypanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(combatir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,14 +178,34 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         Controller.getInstance().finish(0);
+        
     }//GEN-LAST:event_exitActionPerformed
 
 
     @Override
     public void updateView(){
+        stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
+        stationpanel.add(stationView);
+        enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
+        enemypanel.add(enemyView);
         
+        GameState state=Controller.getInstance().getState();
+        if(state==GameState.INIT){
+           combatir.setEnabled(true);
+           nextturn.setEnabled(false);
+        }
+        if(state==GameState.BEFORECOMBAT){
+           combatir.setEnabled(true);
+           nextturn.setEnabled(false);
+        }
+        if(state==GameState.AFTERCOMBAT){
+           combatir.setEnabled(false);
+           nextturn.setEnabled(true); 
+        }
+        repaint();
         
     }
+    
     @Override
     public void showView(){
         this.setVisible(true);
@@ -200,35 +217,55 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         return namesCapt.readNamePlayers();
     }
     // Outputs
+    @Override
     public boolean confirmExitMessage(){
-           return true;
+        return (JOptionPane.showConfirmDialog(this, "Do you want to leave the game?", getAppName(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
     }
+    
+    @Override
     public void nextTurnNotAllowedMessage(){
-
+        JOptionPane.showMessageDialog(this,"You cannot advance your turn, you have not fulfilled your punishment");
     }
+    
+    @Override
     public void lostCombatMessage(){
-
+        JOptionPane.showMessageDialog(this, "You have LOST the combat. \tFulfill your punishment.");
     }
+    
+    @Override
     public void escapeMessage(){
-
+        JOptionPane.showMessageDialog(this, "You have escape.");
     }
+    
+    @Override
     public void wonCombatMessage(){
-
+        JOptionPane.showMessageDialog(this,"You have WON the combat. \tEnjoy your Loot.");
     }
+    
+    @Override
     public void wonGameMessage(){
-
+        JOptionPane.showMessageDialog(this,"YOU HAVE WON THE GAME");
     }
+    
+    @Override
     public void conversionMessage(){
-
+        if(Controller.getInstance().getUIversion().getCurrentEnemy().getLoot().isGetEfficient()){
+            JOptionPane.showMessageDialog(this, "You have WON the combat. \nYou also became an EFFICIENT STATION. \nEnjoy your Loot.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "You have WON the combat. \nYou also became a Space City. \nEnjoy your Loot.", getAppName(), JOptionPane.INFORMATION_MESSAGE);
+        }
     }
+    
+    @Override
     public void noCombatMessage(){
-
+        JOptionPane.showConfirmDialog(this,"You can´t combat in this moment");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel SpaceStation;
     private javax.swing.JButton combatir;
-    private javax.swing.JPanel enemy;
+    private javax.swing.JPanel enemypanel;
     private javax.swing.JButton exit;
     private javax.swing.JButton nextturn;
+    private javax.swing.JPanel stationpanel;
     // End of variables declaration//GEN-END:variables
 }

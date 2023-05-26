@@ -12,8 +12,8 @@ import deepspace.GameState;
  * @author moises
  */
 public class EnemyView extends javax.swing.JPanel {
-    DamageView damageview;
-    LootView lootview;
+    private DamageView damageview;
+    private LootView lootview;
     
     /**
      * Creates new form EnemyView

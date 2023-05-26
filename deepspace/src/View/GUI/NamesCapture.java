@@ -177,7 +177,7 @@ public class NamesCapture extends javax.swing.JDialog {
         }
         
         if(names.size() < 2)
-            JOptionPane.showMessageDialog(this, "ERROR. NO HAS INSERTADO MINIMO 2 JUGADORES.", MainWindow.getInstance().getAppName(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERROR. MINIMUM 2 PLAYERS.", MainWindow.getInstance().getAppName(), JOptionPane.ERROR_MESSAGE);
         else{
             dispose();
         }

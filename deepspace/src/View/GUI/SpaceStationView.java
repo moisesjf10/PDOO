@@ -8,7 +8,6 @@ import controller.Controller;
 import deepspace.ShieldToUI;
 import deepspace.SpaceStationToUI;
 import deepspace.WeaponToUI;
-import java.awt.Component;
 import java.util.ArrayList;
 import java.awt.Component;
 import deepspace.GameState;
@@ -87,18 +86,19 @@ public class SpaceStationView extends javax.swing.JPanel {
         boolean weaponsInHangar = false;
         boolean elementsInHangar = false;
         if(hangarAvaiable){
-            weaponsInHangar = (s.getHangar().getWeapons().size() != 0);
-            shieldsInHangar = (s.getHangar().getShieldBoosters().size() != 0);
+            weaponsInHangar = (!s.getHangar().getWeapons().isEmpty());
+            shieldsInHangar = (!s.getHangar().getShieldBoosters().isEmpty());
             
             elementsInHangar = weaponsInHangar || shieldsInHangar;
         }
-        boolean weaponsMounted = s.getWeapons().size() != 0;
-        boolean shieldsMounted = s.getShieldBoosters().size() != 0;
+        boolean weaponsMounted = !s.getWeapons().isEmpty();
+        boolean shieldsMounted = !s.getShieldBoosters().isEmpty();
         
         GameState gameState = Controller.getInstance().getState();
         boolean init = gameState == GameState.INIT;
         boolean aftercombat = gameState == GameState.AFTERCOMBAT;
         boolean can_action=init  || aftercombat;
+        
         buttonCompleteDiscard.setEnabled(hangarAvaiable && can_action);
         buttonMount.setEnabled(hangarAvaiable && elementsInHangar && can_action);
         buttonDiscard.setEnabled((elementsInHangar || weaponsMounted || shieldsMounted) && can_action); 
@@ -329,6 +329,7 @@ public class SpaceStationView extends javax.swing.JPanel {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "Complete Hangar Discard!!!", MainWindow.getInstance().getAppName(), JOptionPane.INFORMATION_MESSAGE);
         Controller.getInstance().discardHangar();
+        
         MainWindow.getInstance().updateView();
     }//GEN-LAST:event_buttonCompleteDiscardActionPerformed
 

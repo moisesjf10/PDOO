@@ -23,6 +23,7 @@ public class LootView extends javax.swing.JPanel {
         shields.setText(Integer.toString(loot.getnShields()));
         hangar.setText(Integer.toString(loot.getnHangars()));
         medals.setText(Integer.toString(loot.getnMedals()));
+        repaint();
     }
 
     /**

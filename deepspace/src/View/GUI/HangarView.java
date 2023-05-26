@@ -6,7 +6,6 @@ package View.GUI;
 import deepspace.HangarToUI;
 import deepspace.ShieldToUI;
 import deepspace.WeaponToUI;
-import controller.Controller;
 import java.util.ArrayList;
 import java.awt.Component;
 /**
@@ -43,30 +42,12 @@ public class HangarView extends javax.swing.JPanel {
                 shieldview.setShield(s);
                 panelShields.add(shieldview);
             }
-            repaint();
-            revalidate();
-         }
+        }
+        repaint();
+        revalidate();
     }
     
     void getSelectedInHangar(ArrayList<Integer> weaponsSelected, ArrayList<Integer> shieldsSelected){
-        /*//No sé si esto está permitido
-        int numWeapons = Controller.getInstance().getUIversion().getCurrentStation().getHangar().getWeapons().size();
-        int numShields = Controller.getInstance().getUIversion().getCurrentStation().getHangar().getShieldBoosters().size();
-        
-        
-        for(int i=0; i<numWeapons; i++){
-            Component c = panelWeapons.getComponent(i);
-            if(((CombatElementView) c).isSelected()){
-                weaponsSelected.add(i);
-            }
-        }
-        
-        for(int i=0; i<numShields; i++){
-            Component c = panelShields.getComponent(i+numWeapons);
-            if(((CombatElementView) c).isSelected()){
-                shieldsSelected.add(i);
-            }
-        }*/
         weaponsSelected.clear();
         shieldsSelected.clear();
         
