@@ -26,23 +26,34 @@ module Deepspace
       receiveSupplies(supplies)
     end
 
-    def self.copy(station)
-      new(station.name, SuppliesPackage.new(station.ammoPower, station.fuelUnits, station.shieldPower))
-      @nMedals = station.nMedals
+    def copy(other)
+      @name = other.name
+      @ammoPower = other.ammoPower
+      @shieldPower = other.shieldPower
+      @fuelUnits = other.fuelUnits
+      @nMedals = other.nMedals
 
-      if station.weapons != nil
-        @weapons = station.weapons.clone
-      end
-      if station.shieldBoosters != nil
-        @shieldBoosters=station.shieldBoosters.clone
-      end
-      if station.hangar != nil
-        @hangar=station.hangar.clone
-      end
-      if station.pendingDamage != nil
-        @pendingDamage=station.pendingDamage.clone
+      if !other.hangar.nil?
+        @hangar = Hangar.newCopy(other.hangar)
+      else
+        @hangar = nil
       end
 
+      if !other.pendingDamage.nil?
+        @pendingDamage = other.pendingDamage.copy
+      else
+        @pendingDamage = nil
+      end
+
+      @shieldBoosters = []
+      for s in other.shieldBoosters
+        @shieldBoosters << ShieldBooster.newCopy(s)
+      end
+
+      @weapons = []
+      for w in other.weapons
+        @weapons << Weapon.newCopy(w)
+      end
     end
 
     public
