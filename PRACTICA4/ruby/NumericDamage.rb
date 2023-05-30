@@ -1,4 +1,5 @@
 require_relative 'NumericDamageToUI'
+require_relative "Damage"
 module Deepspace
   class NumericDamage < Damage
     def initialize(nweapons,nshields)

@@ -1,4 +1,5 @@
 require_relative 'SpecificDamageToUI'
+require_relative "Damage"
 module Deepspace
   class SpecificDamage < Damage
     def initialize(weaponlist,nshields)

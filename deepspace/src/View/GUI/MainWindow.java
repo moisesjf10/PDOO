@@ -8,6 +8,7 @@ import View.DeepSpaceView;
 import controller.Controller;
 import java.util.ArrayList;
 import deepspace.GameState;
+import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,7 +73,6 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         stationpanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Station"));
-        stationpanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
 
         enemypanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Enemy"));
 
@@ -102,21 +102,19 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(stationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(stationpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                    .addComponent(enemypanel, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(nextturn)
-                        .addGap(114, 114, 114)
+                        .addGap(223, 223, 223)
                         .addComponent(exit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enemypanel, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(combatir)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(combatir)
+                        .addGap(149, 149, 149)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,17 +122,17 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(stationpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(stationpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(enemypanel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(combatir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextturn)
                             .addComponent(exit))
-                        .addGap(27, 27, 27))))
+                        .addGap(69, 69, 69))))
         );
 
         pack();
@@ -165,6 +163,7 @@ public class MainWindow extends javax.swing.JFrame implements DeepSpaceView {
     public void updateView(){
         stationView.setSpaceStation(Controller.getInstance().getUIversion().getCurrentStation());
         stationpanel.add(stationView);
+        
         enemyView.setEnemy(Controller.getInstance().getUIversion().getCurrentEnemy());
         enemypanel.add(enemyView);
         

@@ -4,6 +4,7 @@
  */
 package View.GUI;
 import deepspace.WeaponToUI;
+import java.awt.Color;
 
 /**
  *
@@ -88,6 +89,7 @@ public class WeaponView extends javax.swing.JPanel implements CombatElementView 
         // TODO add your handling code here:
         selected=!selected;
         setOpaque(selected);
+        this.setBackground(Color.green);
         repaint();
     }//GEN-LAST:event_formMouseClicked
     
