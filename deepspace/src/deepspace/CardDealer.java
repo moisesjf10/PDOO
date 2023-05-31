@@ -71,7 +71,7 @@ class CardDealer {
     }
     
     private void createSuppliesPackages() {
-        /*
+        
         suppliesPackages.add(new SuppliesPackage(1,10,1));
         suppliesPackages.add(new SuppliesPackage(1,10,1));
         suppliesPackages.add(new SuppliesPackage(1,10,1));
@@ -85,7 +85,7 @@ class CardDealer {
         suppliesPackages.add(new SuppliesPackage(3,50,3));    
         suppliesPackages.add(new SuppliesPackage(40,100,40));
         suppliesPackages.add(new SuppliesPackage(100,100,100));
-        */
+        
         suppliesPackages.add(new SuppliesPackage(10000,10000,10000));
     }
     private void createWeapons() {
@@ -179,7 +179,7 @@ class CardDealer {
         Damage mediumSpecificDamage0;
         mediumSpecificDamage0=new SpecificDamage(new ArrayList<>(Arrays.asList(WeaponType.LASER,
                                                                         WeaponType.MISSILE)),2);  
-        /*
+        
         enemies.add(new EnemyStarShip("Enemigo fácil -1",0,0,regularLoot0,lowDamage0));
         enemies.add(new EnemyStarShip("Enemigo fácil -1",0,10,badLoot,lowDamage0));
         enemies.add(new EnemyStarShip("Enemigo fácil -1",10,0,badLoot,lowDamage0));
@@ -208,7 +208,7 @@ class CardDealer {
         enemies.add(new EnemyStarShip("Enemigo difícil 1",100,200,goodLoot,hardSpecificDamage0));   
         
         enemies.add(new EnemyStarShip("Enemigo imposible",500,500,goodLoot,hardSpecificDamage0));    
-        */
+        
         
         //Enemigos que transforman
         
