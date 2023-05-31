@@ -41,12 +41,12 @@ module Deepspace
     def createSpaceCity
       if !@haveSpaceCity
         rest = Array.new()
-        SpaceStation.each do |n|
+        @spaceStations.each do |n|
           if n != @currentStation
             rest.push(n)
           end
         end
-        @currentStation = new SpaceCity(@currentStation,rest)
+        @currentStation = SpaceCity.new(@currentStation,rest)
         @spaceStations[@currentStationIndex] = @currentStation
         @haveSpaceCity = true
       end

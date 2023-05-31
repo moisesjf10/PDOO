@@ -278,7 +278,8 @@ class TextMainView
   def lostCombatMessage() 
     puts "Has PERDIDO el combate. \tCumple tu castigo."
   end
-  
+
+
   private 
   
   def discardMountedElements(element) 
@@ -327,7 +328,10 @@ class TextMainView
   def wonGameMessage() 
     puts "\n\tHAS GANADO LA PARTIDA"
   end
-    
+
+  def conversionMessage()
+    puts "Has GANADO el combate. \nAdemás te has CONVERTIDO. \nDisfruta de tu botín"
+  end
   def noCombatMessage()
     puts "No puedes combatir en este momento"
   end
